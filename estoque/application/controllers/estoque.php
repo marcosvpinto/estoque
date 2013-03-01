@@ -27,6 +27,26 @@ class Estoque extends CI_Controller {
 	    $this->load->view('template', $data);
 	}
 	
+	function edit()
+	{
+		$id = $this->uri->segment(3);
+		$this->load->model('MEstoque', '', TRUE);
+		$data['estoque'] = $this->MEstoque->getEstoque($id)->result();
+		$data['title'] = "Modificar Estoque - Controle de Estoque";
+		$data['headline'] = "Edição de Estoque";
+		$data['include'] = "estoque_edit";
+		$this->load->model('MProduto', '', TRUE);
+		$data['produtos'] = $this->MProduto->listProduto();
+		$this->load->view('template', $data);
+	}
+	
+	function update()
+	{
+		$this->load->model('MEstoque','',TRUE);
+		$this->MEstoque->updateEstoque($_POST['id_estoque'], $_POST);
+		redirect('Estoque/listing', 'refresh');
+	}
+	
 	function listing()
 	{
 		$this->load->model('MEstoque','',TRUE);
@@ -35,12 +55,12 @@ class Estoque extends CI_Controller {
 		$tmpl = array ( 'table_open'  => '<table id="tabela" class="tablesorter">' );
 		$this->table->set_template($tmpl);
 		$this->table->set_empty("&nbsp;"); 
-		$this->table->set_heading('Produto', 'Quantidade');
+		$this->table->set_heading('', 'Produto', 'Quantidade');
 		$table_row = array();
 		foreach ($qry->result() as $estoque)
 		{
 			$table_row = NULL;
-			//$table_row[] = anchor('Estoque/edit/' . $estoque->id_estoque, img(base_url().'imagens/atualizar.jpg'));
+			$table_row[] = anchor('Estoque/edit/' . $estoque->id_estoque, img(base_url().'assets/img/atualizar.jpg'));
 			$table_row[] = $estoque->nome_produto;
 			$table_row[] = $estoque->quantidade;
 			//$table_row[] = anchor('Estoque/delete/' . $estoque->id_estoque, img(base_url().'imagens/delete.jpg'), 

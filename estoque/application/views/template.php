@@ -101,8 +101,8 @@
 				             anchor('Usuario/listing', 'Usuários'), 
 				             anchor('Produto/listing', 'Produtos'), 
 							 anchor('Fornecedor/listing', 'Fornecedores'), 
-							 anchor('', 'Nota Fiscal'), 
-							 anchor('Estoque/listing', 'Estoque', ''), 
+							 anchor('NotaFiscal/listing', 'Nota Fiscal'), 
+							 anchor('Estoque/listing', 'Estoque'), 
 							 anchor('Estoque/sair', 'Sair', ''));
 				echo ul($opt, '');
 			?>

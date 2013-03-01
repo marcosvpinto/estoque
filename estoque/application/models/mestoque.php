@@ -15,18 +15,18 @@
 
 		function getEstoque($id)
 		{
-			return $this->db->get_where('estoque', array('id'=> $id));
+			return $this->db->get_where('estoque', array('id_estoque'=> $id));
 		}
 
 		function updateEstoque($id, $data)
 		{
-			$this->db->where('id', $id);
+			$this->db->where('id_estoque', $id);
 			$this->db->update('estoque', $data); 
 		}
 
 		function deleteEstoque($id)
 		{
-			$this->db->where('id', $id);
+			$this->db->where('id_estoque', $id);
 			$this->db->delete('estoque'); 
 		}
 
