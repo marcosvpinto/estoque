@@ -1,0 +1,166 @@
+* {
+	padding: 0;
+	margin: 0;
+} 
+
+body {
+	margin:0;
+	padding: 0;
+	background: #8EC3E2;
+	color: #444;
+	font: 0.75em Tahoma, sans-serif;
+	line-height: 1.65em;
+
+}
+
+img {
+	border: 0;
+}
+
+a{ 
+	color: #173D7F; 
+	text-decoration: none; 
+}
+
+a:hover {  
+	color: #000; 
+}
+
+#content {
+	width: 1000px;
+	height: 550px;
+	margin: 20px auto;
+	padding: 10px;
+	background: #FFF;
+	background-image: url(../img/caixas-empilhadas2.jpg);
+	background-repeat:no-repeat;
+	background-position:right bottom;
+}
+
+#header {
+	text-align: center;
+	background: #212F54;
+	height: 50px;
+}
+
+#header h1 { 
+	font-size: 3em;
+	letter-spacing: -1px;
+	padding: 15px 0 0 10px;
+	color: #8EC3E2;
+}
+
+#header h2 {
+	font-size: 1.25em;
+	color: white;
+	padding: 0 0 0 10px;
+}
+
+#navigation {
+	background: #6D80A8;
+	height: 46px;
+	line-height: 30px;
+	margin: 20px auto;
+}
+
+#navigation li {
+	float:left;
+	list-style-type:none;
+	font-family: Lucida, sans-serif;
+	font-size: 1.25em;
+	font-weight: bold;
+}
+
+#navigation li a {
+	display:block;
+	padding:8px;
+	text-decoration:none;
+	color: #000308;
+	letter-spacing:1px;
+}
+
+#navigation li a:hover {
+	background: #8EC3E2;
+	color:#222;
+	text-decoration:none;
+	border-left:3px solid #444;
+}
+
+#footer { 
+	position:absolute;
+	bottom:0;
+	background-color: #212F54;
+	margin-top:10px;
+	height: 20px;
+	width:100%;
+	line-height: 20px;
+	text-align: center;
+}
+
+#footer a {  
+	color: #C1FCFF; 
+	text-decoration: none; 
+}
+
+#footer  a:hover { 
+	color: #777; 
+}
+
+#footer h3 {
+	font: 1em;
+	font-variant: small-caps;
+	color: #C1FCFF;
+}
+
+br {
+	clear: left;
+}
+
+#erro{
+	position: relative;
+	/* display: none; */
+	border: 1px solid red;
+	background-color: #FFCCCC;
+	width: 200px;
+	/* left: 50%; */
+	/* margin-left: -100px; */
+	height: 45px;
+	text-align: center;
+	font: bold 1em Verdana;
+	color: red;
+}
+
+label {
+	display: block;
+	float: left;
+	text-align: left;
+	font: bold 1em Helvetica;
+	width: 80px;
+	line-height: 1.5em;
+	margin-top: 2px;
+}
+
+label.error { 
+	display: block; 
+	width: 200px;
+	color: red; 
+	margin: 0 .5em 0 0; 
+	vertical-align: top; 
+	font-size: 10px 
+}
+
+#carregando {
+	position: relative;
+	left: 50%;
+	margin-left: -50px;
+	width: 100px;
+	border: 1px solid grey;
+	padding: 5px;
+}
+
+#carregando span {
+	font-family: Verdana;
+	font-size: 1em;
+	font-weight: bold;
+	text-align: center;
+}
