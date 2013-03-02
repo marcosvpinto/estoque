@@ -1,5 +1,8 @@
 <?php 
 
+	echo heading($headline, 2);
+	echo br();
+
 	echo br();
 	echo $data_table1;
 	echo br();

@@ -36,7 +36,9 @@
 	
 	$field_array = array('Produto', 'Quantidade', 'Valor Unitário');
 
-	echo ('<div id="item_nota">');	
+	echo ('<div id="item_nota">');
+	echo heading('Item da Nota Fiscal', 2);	
+	echo br();
 	echo form_label($field_array[0], $field_array[0]);
 	echo br();
 	echo ('<select name="cod_produto" title="Produto" class="required">');
@@ -55,9 +57,8 @@
 	echo form_label($field_array[2], $field_array[2]);
 	echo br();
 	echo form_input('valor_item', '', 'title="Valor Unitário do Item" id="valor_item" size="15" class="required"');
-	
-	echo br();
-	echo br();
+
+	echo nbs(25);
 	
 	echo form_submit('', 'Cadastrar');
 	echo form_close();

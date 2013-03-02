@@ -3,6 +3,9 @@
 	echo form_open('Fornecedor/update', 'class="form"');
 	$field_array = array('CNPJ', 'Razão Social', 'Telefone');
 	
+	echo heading($headline, 2);
+	echo br();
+	
 	echo form_hidden('id_fornecedor', $fornecedor[0]->id_fornecedor);
 	
 	echo form_label($field_array[0], $field_array[0]);

@@ -64,6 +64,14 @@ class Usuario extends CI_Controller {
 		$this->MUsuario->deleteUsuario($id);
 		redirect('Usuario/listing', 'refresh');
 	}
+	
+	function inativa()
+	{
+		$id = $this->uri->segment(3);
+		$this->load->model('MUsuario','',TRUE);
+		$this->MUsuario->inativarUsuario($id);
+		redirect('Usuario/listing', 'refresh');
+	}
 
 	function listing()
 	{
@@ -73,17 +81,16 @@ class Usuario extends CI_Controller {
 		$tmpl = array ( 'table_open'  => '<table id="tabela">' );
 		$this->table->set_template($tmpl);
 		$this->table->set_empty("&nbsp;"); 
-		$this->table->set_heading('Editar', 'Login', 'Setor', 'Perfil', 'Excluir');
+		$this->table->set_heading('Editar', 'Inativa', 'Login', 'Setor', 'Perfil');
 		$table_row = array();
 		foreach ($qry->result() as $usuario)
 		{
 			$table_row = NULL;
 			$table_row[] = anchor('Usuario/edit/' . $usuario->id_usuario, '<span class="ui-icon ui-icon-pencil"></span>');
+			$table_row[] = anchor('Usuario/inativa/' . $usuario->id_usuario, '<span class="ui-icon ui-icon-minusthick"></span>');
 			$table_row[] = $usuario->login;
 			$table_row[] = $usuario->nome_setor;
 			$table_row[] = $usuario->nome_perfil;
-			$table_row[] = anchor('Usuario/delete/' . $usuario->id_usuario, '<span class="ui-icon ui-icon-trash"></span>', 
-							"onClick=\" return confirm('Tem certeza que deseja remover o registro?')\"");
 			$this->table->add_row($table_row);
 		}    
 		$table = $this->table->generate();

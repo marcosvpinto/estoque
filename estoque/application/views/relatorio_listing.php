@@ -1,12 +1,18 @@
 ﻿<?php 
 
-	echo heading('Relatorios', 3);
+	echo heading($headline, 2);
 	echo br();
 	
 	echo form_open('Relatorio\retorno', 'class="form"');
-	echo form_label('Nome', 'Nome do Produto');
 	echo br();
-	echo form_input('nome', '', 'title="Nome do Produto"');
+	echo form_label('Nome', "Nome do Produto");
+	echo br();
+	echo ('<select name="nome" title="Produto" class="required">');
+	echo ('<option value=""></option>');
+	foreach($produtos->result() as $produto):
+		echo ('<option value="'.$produto->nome_produto.'">'.$produto->nome_produto.'</option>');
+	endforeach;
+	echo ('</select>');
 	echo br();
 	echo form_submit('', 'Executar');
 	echo form_close();

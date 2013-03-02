@@ -3,6 +3,9 @@
 	echo form_open('NotaFiscal/create', 'class="form"');
 	$field_array = array('Número', 'Fornecedor', 'Data da Nota');
 	
+	echo heading($headline, 2);
+	echo br();
+	
 	echo form_label($field_array[0], $field_array[0]);
 	echo br();
 	echo form_input('numero_nota', '', 'title="Número da Nota Fiscal" size="15" class="required"');

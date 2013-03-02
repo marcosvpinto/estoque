@@ -62,7 +62,13 @@ class Estoque extends CI_Controller {
 			$table_row = NULL;
 			$table_row[] = anchor('Estoque/edit/' . $estoque->id_estoque, '<span class="ui-icon ui-icon-pencil"></span>');
 			$table_row[] = $estoque->nome_produto;
-			$table_row[] = $estoque->quantidade;
+			if($estoque->quantidade < $estoque->qtd_minima)
+			{
+				$table_row[] = ('<span id="estoque_baixo">' . $estoque->quantidade . '</span>');
+			} else
+			{
+				$table_row[] = $estoque->quantidade;
+			}
 			//$table_row[] = anchor('Estoque/delete/' . $estoque->id_estoque, img(base_url().'imagens/delete.jpg'), 
 			//				"onClick=\" return confirm('Tem certeza que deseja remover o registro?')\"");
 			$this->table->add_row($table_row);

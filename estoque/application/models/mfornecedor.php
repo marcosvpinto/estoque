@@ -9,6 +9,7 @@
 
 		function listFornecedor()
 		{
+			$this->db->where('ativo = "S"');
 			return $this->db->get('fornecedor');
 		}
 
@@ -27,6 +28,13 @@
 		{
 			$this->db->where('id_fornecedor', $id);
 			$this->db->delete('fornecedor'); 
+		}
+		
+		function inativarFornecedor($id)
+		{
+			$data = array('ativo'=>'N');
+			$this->db->where('id_fornecedor', $id);
+			$this->db->update('fornecedor', $data); 
 		}
 
 	}

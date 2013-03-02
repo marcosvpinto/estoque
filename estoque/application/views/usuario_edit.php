@@ -3,6 +3,9 @@
 	echo form_open('Usuario/update', 'class="form"');
 	$field_array = array('Login', 'Senha', 'Setor', 'Perfil');
 	
+	echo heading($headline, 2);
+	echo br();
+	
 	echo form_hidden('id_usuario', $usuario[0]->id_usuario);
 	
 	echo form_label($field_array[0], $field_array[0]);

@@ -31,9 +31,6 @@ a:hover {
 	margin: 20px auto;
 	padding: 10px;
 	background: #FFF;
-	background-image: url(../img/caixas-empilhadas2.jpg);
-	background-repeat:no-repeat;
-	background-position:right bottom;
 }
 
 #header {
@@ -62,7 +59,7 @@ a:hover {
 	font-family: Lucida, sans-serif;
 	font-size: 1em;
 	font-weight: bold;
-	margin-bottom: 40px;
+	margin-bottom: 30px;
 }
 
 #navigation li a {
@@ -78,7 +75,7 @@ a:hover {
 	color: #222;
 	text-decoration: none;
 	border-radius: 5px;
-}
+} 
 
 #footer { 
 	background-color: #212F54;
@@ -107,7 +104,7 @@ a:hover {
 
 .form {
 	margin-left: 100px;
-}
+} 
 
 label.error { 
 	display: block; 
@@ -140,4 +137,18 @@ label.error {
 	right: 100px;
 	border-radius: 5px;
 	margin-bottom: 10px;
+}
+
+#estoque_baixo {
+	color: #F00;
+	font-weight: bold;
+}
+
+#pedido_aberto {
+	color: #F00;
+	font-weight: bold;
+}
+
+#pedido_atendido {
+	color: #00CD00;
 }

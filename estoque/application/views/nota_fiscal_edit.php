@@ -3,6 +3,9 @@
 	echo form_open('NotaFiscal/update', 'class="form"');
 	$field_array = array('Número', 'Fornecedor', 'Data da Nota');
 	
+	echo heading($headline, 2);
+	echo br();
+	
 	echo form_hidden('cod_nota', $nota_fiscal[0]->cod_nota);
 	
 	echo form_label($field_array[0], $field_array[0]);

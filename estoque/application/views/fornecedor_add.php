@@ -3,6 +3,9 @@
 	echo form_open('Fornecedor/create', 'class="form"');
 	$field_array = array('CNPJ', 'Razão Social', 'Telefone');
 	
+	echo heading($headline, 2);
+	echo br();
+	
 	echo form_label($field_array[0], $field_array[0]);
 	echo br();
 	echo form_input('cnpj', '', 'title="CNPJ da empresa" class="cnpj" size="15"');

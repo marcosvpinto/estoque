@@ -16,13 +16,13 @@ jQuery(function($){
 });
 
 $(function() {
-	$( "input[type=submit], button" ).button();
+	$("input[type=submit], button").button();
 });
 
 $(function() {
-	$( "#data_nota" ).datepicker();
+	$("#data_nota").datepicker();
 });
 
 $(document).ready(function(){
     $(".form").validate();
-  });
+});

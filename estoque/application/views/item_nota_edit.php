@@ -6,6 +6,9 @@
 	
 	$field_array = array('Produto', 'Quantidade', 'Valor Unitário');
 	
+	echo heading($headline, 2);
+	echo br();
+	
 	echo form_hidden('id_item', $item[0]->id_item);
 	
 	echo form_label($field_array[0], $field_array[0]);

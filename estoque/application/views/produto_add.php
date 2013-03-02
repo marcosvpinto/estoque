@@ -3,6 +3,9 @@
 	echo form_open('Produto/create', 'class="form"');
 	$field_array = array('Codigo', 'Nome', 'Categoria', 'Apresentacao', 'Minimo');
 	
+	echo heading($headline, 2);
+	echo br();
+	
 	echo form_label($field_array[0], $field_array[0]);
 	echo br();
 	echo form_input('codigo', '', 'title="Código do produto formado por 3 caracteres iniciais do tipo e 3 digitos sequenciais daquele tipo" size="15" class="required"');

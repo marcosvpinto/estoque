@@ -11,6 +11,7 @@
 		{
 			$this->db->join('apresentacao', 'apresentacao.id_apresentacao = produto.unidade');
 			$this->db->join('categoria', 'categoria.id_categoria = produto.categoria');
+			$this->db->order_by('nome_produto', 'asc');
 			return $this->db->get('produto');
 		}
 

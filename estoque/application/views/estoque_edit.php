@@ -3,6 +3,9 @@
 	echo form_open('Estoque/update', 'class="form"');
 	$field_array = array('Produto', 'Quantidade');
 	
+	echo heading($headline, 2);
+	echo br();
+	
 	echo form_hidden('id_estoque', $estoque[0]->id_estoque);
 	
 	echo form_label($field_array[0], $field_array[0]);

@@ -3,6 +3,9 @@
 	echo form_open('Usuario/create', 'class="form"');
 	$field_array = array('Login', 'Senha', 'Setor', 'Perfil');
 	
+	echo heading($headline, 2);
+	echo br();
+	
 	echo form_label($field_array[0], $field_array[0]);
 	echo br();
 	echo form_input('login', '', 'title="Login do usuário no sistema" size="10" class="required"');
@@ -34,7 +37,7 @@
 	echo br();
 	echo br();
 	
-	echo form_submit('', 'Cadastrar'); 
+	echo form_submit('', 'Cadastrar', 'class="submit"'); 
 	echo form_close();
 	
 /* End of file usuario_add.php */

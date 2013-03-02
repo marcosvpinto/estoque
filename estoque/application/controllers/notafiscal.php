@@ -28,8 +28,8 @@ class NotaFiscal extends CI_Controller {
     {
         $this->load->model('MNotaFiscal', '', TRUE);
 		$_POST['data_nota'] = pt_to_mysql($this->input->post('data_nota'));
-        $this->MNotaFiscal->addNota($_POST);
-        redirect('ItemNota/addItens', 'refresh');
+        $id = $this->MNotaFiscal->addNota($_POST);
+        redirect('ItemNota/addItens/'.$id, 'refresh');
     }
 	
 	function edit()

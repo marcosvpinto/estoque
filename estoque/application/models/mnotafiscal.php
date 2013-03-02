@@ -5,6 +5,7 @@
 		function addNota($data)
 		{
 			$this->db->insert('nota', $data);
+			return $this->db->insert_id();
 		}
 
 		function listNota()

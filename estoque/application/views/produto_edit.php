@@ -3,6 +3,9 @@
 	echo form_open('Produto/update', 'class="form"');
 	$field_array = array('Codigo', 'Nome', 'Categoria', 'Unidade', 'Minimo');
 	
+	echo heading($headline, 2);
+	echo br();
+	
 	echo form_hidden('id_produto', $produto[0]->id_produto);
 	
 	echo form_label($field_array[0], $field_array[0]);

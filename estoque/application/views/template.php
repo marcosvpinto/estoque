@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/estilo.css" type="text/css" media="screen" charset="utf-8" />
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.css" type="text/css" media="screen" charset="utf-8" />
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTables_themeroller.css" type="text/css" media="screen" charset="utf-8" />
-		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/smoothness/jquery-ui-1.8.10.custom.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery-ui-1.8.10.custom.css" type="text/css" media="screen" charset="utf-8" />
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/tipTip.css" type="text/css" media="screen" charset="utf-8" />
 
 		<!-- JavaScript -->
@@ -24,13 +24,11 @@
 	</head>
 	
 	<body>
-
-		
 		
 		<div id="content">
 		
 			<div id="header">
-				<h1><?php echo $headline;?></h1>
+				<h1>Sistema de Controle de Estoque</h1>
 			</div>
 		
 			<div id="menu">
@@ -42,7 +40,7 @@
 								 anchor('NotaFiscal/listing', 'NOTA FISCAL'), 
 								 anchor('Pedido/listing', 'PEDIDO'), 
 								 anchor('Estoque/listing', 'ESTOQUE'), 
-								 //anchor('', 'RELATÓRIO'),
+								 //anchor('Relatorio/listing', 'RELATÓRIO'),
 								 anchor('Estoque/sair', 'SAIR'));
 					echo ul($opt, 'id="navigation"');
 				?>
@@ -58,6 +56,8 @@
 			<div id="footer">
 				<h3>MVPDEV Sistemas Digitais</h3>
 			</div>
+		
+			<h5>Controle de Estoque - Versão 4.0.7</h5>
 		
 		</div>
 

@@ -56,6 +56,14 @@ class Fornecedor extends CI_Controller {
 		$this->MFornecedor->deleteFornecedor($id);
 		redirect('Fornecedor/listing', 'refresh');
 	}
+	
+	function inativa()
+	{
+		$id = $this->uri->segment(3);
+		$this->load->model('MFornecedor','',TRUE);
+		$this->MFornecedor->inativarFornecedor($id);
+		redirect('Fornecedor/listing', 'refresh');
+	}
 
 	function listing()
 	{
@@ -71,11 +79,10 @@ class Fornecedor extends CI_Controller {
 		{
 			$table_row = NULL;
 			$table_row[] = anchor('Fornecedor/edit/' . $fornecedor->id_fornecedor, '<span class="ui-icon ui-icon-pencil"></span>');
+			$table_row[] = anchor('Fornecedor/inativa/' . $fornecedor->id_fornecedor, '<span class="ui-icon ui-icon-minusthick"></span>');
 			$table_row[] = $fornecedor->cnpj;
 			$table_row[] = $fornecedor->razao_social;
 			$table_row[] = $fornecedor->telefone;
-			$table_row[] = anchor('Fornecedor/delete/' . $fornecedor->id_fornecedor, '<span class="ui-icon ui-icon-trash"></span>', 
-							"onClick=\" return confirm('Tem certeza que deseja remover o registro?')\"");
 			$this->table->add_row($table_row);
 		}    
 		$table = $this->table->generate();

@@ -1,7 +1,9 @@
 <?php 
 	
+	echo heading($headline, 2);
+	echo br();
 	echo $data_table; 
-	echo "<br />";
+	echo br();
 	echo anchor('Pedido/add', form_button('Inserir', 'Inserir Pedido'));
 	
 /* End of file pedido_listing.php */

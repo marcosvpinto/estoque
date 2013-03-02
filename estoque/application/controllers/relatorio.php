@@ -20,6 +20,8 @@ class Relatorio extends CI_Controller {
 		$data['title'] = "Listagem de Relatórios - Controle de Estoque";
 		$data['headline'] = "Listagem de Relatórios";
 		$data['include'] = 'Relatorio_listing';
+		$this->load->model('MProduto', '', TRUE);
+		$data['produtos'] = $this->MProduto->listProduto();
 		$this->load->view('template', $data);
 	}
 	

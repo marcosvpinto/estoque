@@ -3,6 +3,9 @@
 	echo form_open('Pedido/update', 'class="form"');
 	$field_array = array('Usuário', 'Produto', 'Quantidade', 'Data Pedido', 'Observação');
 	
+	echo heading($headline, 2);
+	echo br();
+	
 	echo form_hidden('cod_pedido', $pedido[0]->cod_pedido);
 	
 	echo form_label($field_array[0], $field_array[0]);

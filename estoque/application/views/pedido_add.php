@@ -3,6 +3,9 @@
 	echo form_open('Pedido/create', 'class="form"');
 	$field_array = array('Usuário', 'Produto', 'Quantidade', 'Data Pedido', 'Observação');
 	
+	echo heading($headline, 2);
+	echo br();
+	
 	echo form_label($field_array[0], $field_array[0]);
 	echo br();
 	echo ('<select name="id_usuario" title="Usuário que fez a requisição" class="required">');
