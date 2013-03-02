@@ -57,7 +57,7 @@
 				<h3>MVPDEV Sistemas Digitais</h3>
 			</div>
 		
-			<h5>Controle de Estoque - Versão 4.0.7</h5>
+			<h5>Controle de Estoque - Versão 4.0.8</h5>
 		
 		</div>
 

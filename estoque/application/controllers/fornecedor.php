@@ -73,7 +73,7 @@ class Fornecedor extends CI_Controller {
 		$tmpl = array ( 'table_open'  => '<table id="tabela">' );
 		$this->table->set_template($tmpl);
 		$this->table->set_empty("&nbsp;"); 
-		$this->table->set_heading('Editar', 'CNPJ', 'Razão Social', 'Telefone', 'Excluir');
+		$this->table->set_heading('Editar', 'Inativar', 'CNPJ', 'Razão Social', 'Telefone');
 		$table_row = array();
 		foreach ($qry->result() as $fornecedor)
 		{
