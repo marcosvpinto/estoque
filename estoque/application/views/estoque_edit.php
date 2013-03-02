@@ -19,7 +19,7 @@
 	
 	echo form_label($field_array[1], $field_array[1]);
 	echo br();
-	echo form_input('quantidade', $estoque[0]->quantidade, 'size="5"');
+	echo form_input('quantidade', $estoque[0]->quantidade, 'size="5" title="Apenas a quantidade do produto pode ser alterado"');
 	echo br();
 	echo br();
 	

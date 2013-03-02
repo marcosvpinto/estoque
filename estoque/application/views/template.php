@@ -19,16 +19,19 @@
 		<script type="text/javascript" src="<?php echo base_url() . 'assets/js/jquery.maskedinput.js' ?>"></script>
 		<script type="text/javascript" src="<?php echo base_url() . 'assets/js/scripts.js' ?>"></script>
 		<script type="text/javascript" src="<?php echo base_url() . 'assets/js/jquery.validate.js' ?>"></script>
+		<script type="text/javascript" src="<?php echo base_url() . 'assets/js/jquery.flot.js' ?>"></script>
 
 	</head>
 	
 	<body>
 
-		<div id="header">
-			<h1><?php echo $headline;?></h1>
-		</div>
+		
 		
 		<div id="content">
+		
+			<div id="header">
+				<h1><?php echo $headline;?></h1>
+			</div>
 		
 			<div id="menu">
 				<?php 
@@ -37,9 +40,9 @@
 								 anchor('Produto/listing', 'PRODUTOS'), 
 								 anchor('Fornecedor/listing', 'FORNECEDORES'), 
 								 anchor('NotaFiscal/listing', 'NOTA FISCAL'), 
-								 anchor('', 'PEDIDO'), 
+								 anchor('Pedido/listing', 'PEDIDO'), 
 								 anchor('Estoque/listing', 'ESTOQUE'), 
-								 anchor('Relatorio/listing', 'RELATÓRIO'),
+								 //anchor('', 'RELATÓRIO'),
 								 anchor('Estoque/sair', 'SAIR'));
 					echo ul($opt, 'id="navigation"');
 				?>
@@ -49,12 +52,12 @@
 			<br />
 		
 			<?php $this->load->view($include);?>
-		
-		</div>
-		
-		<div id="footer">
-		
-			<h3>MVPDEV Sistemas Digitais</h3>
+			
+			<br />
+			
+			<div id="footer">
+				<h3>MVPDEV Sistemas Digitais</h3>
+			</div>
 		
 		</div>
 

@@ -6,9 +6,9 @@
 body {
 	margin:0;
 	padding: 0;
-	background: #8EC3E2;
+	background: #777;
 	color: #444;
-	font: 0.75em Tahoma, sans-serif;
+	font: 0.75em Verdana, sans-serif;
 	line-height: 1.65em;
 }
 
@@ -27,7 +27,7 @@ a:hover {
 
 #content {
 	width: 1000px;
-	height: 550px;
+	height: auto;
 	margin: 20px auto;
 	padding: 10px;
 	background: #FFF;
@@ -38,27 +38,22 @@ a:hover {
 
 #header {
 	text-align: center;
-	background: #212F54;
-	height: 50px;
+	height: 60px;
 }
 
 #header h1 { 
 	font-size: 3em;
-	letter-spacing: -1px;
+	font-variant: small-caps;
 	padding: 15px 0 0 10px;
-	color: #8EC3E2;
-}
-
-#header h2 {
-	font-size: 1.25em;
-	color: white;
-	padding: 0 0 0 10px;
+	color: #6D80A8;
 }
 
 #navigation {
 	background: #6D80A8;
 	height: 46px;
 	line-height: 30px;
+	border-radius: 5px;
+	text-align: center;
 }
 
 #navigation li {
@@ -82,36 +77,31 @@ a:hover {
 	background: #8EC3E2;
 	color: #222;
 	text-decoration: none;
+	border-radius: 5px;
 }
 
 #footer { 
-	position: absolute;
-	bottom: 0;
 	background-color: #212F54;
 	margin-top: 10px;
-	height: 20px;
+	border-radius: 15px;
 	width: 100%;
 	line-height: 20px;
 	text-align: center;
 }
 
-#footer a {  
-	color: #C1FCFF; 
-	text-decoration: none; 
-}
-
-#footer  a:hover { 
-	color: #777; 
-}
-
 #footer h3 {
 	font: 1em;
 	font-variant: small-caps;
-	color: #C1FCFF;
+	color: #FFF;
+}
+
+#introducao {
+	margin-left: 100px;
+	height: 300px;
+	width: 700px;
 }
 
 #erro { 
-	
 	width: 180px;
 }
 
@@ -126,4 +116,28 @@ label.error {
 	margin: 0 .5em 0 0; 
 	vertical-align: top; 
 	font-size: 10px 
+}
+
+#cabecalho_nota {
+	position: relative;
+	float: left;
+	border-radius: 5px;
+	background: #EEE;
+	width: 360px;
+	padding: 10px;
+}
+
+#cabecalho_nota h2 {
+	color: #555;
+}
+
+#item_nota {
+	position: relative;
+	float: right;
+	width: 320px;
+	padding: 10px;
+	background: #BBB;
+	right: 100px;
+	border-radius: 5px;
+	margin-bottom: 10px;
 }

@@ -5,6 +5,7 @@
 		function addNota($data)
 		{
 			$this->db->insert('nota', $data);
+			return $this->db->insert_id();
 		}
 
 		function listNota()
@@ -24,13 +25,13 @@
 			$this->db->where('cod_nota', $id);
 			$this->db->update('nota', $data); 
 		}
-
-		function deleteNota($id)
+		
+		function fecharNota($id)
 		{
+			$insert = array('fechado'=>'1');
 			$this->db->where('cod_nota', $id);
-			$this->db->delete('nota'); 
+			$this->db->update('nota', $insert);
 		}
-
 	}
 
 /* End of file mnotafiscal.php */

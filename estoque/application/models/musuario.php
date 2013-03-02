@@ -10,7 +10,7 @@
 		function listUsuario()
 		{
 			$this->db->join('setor', 'setor.id_setor = usuario.setor');
-			$this->db->join('perfil', 'perfil.id_perfil = usuario.perfil');
+			$this->db->join('perfil', 'perfil.nivel = usuario.perfil');
 			return $this->db->get('usuario');
 		}
 

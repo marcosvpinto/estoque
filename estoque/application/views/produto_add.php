@@ -21,7 +21,10 @@
 		echo ('<option value="'.$categoria->id_categoria.'">'.$categoria->nome_categoria.'</option>');
 	endforeach;
 	echo ('</select>');
-	echo anchor('Categoria/add', 'Cadastro de Categoria', 'id="categoria"');
+	echo br();
+	echo br();
+	echo anchor('Categoria/add', form_button('Categoria', 'Cadastro de Categoria'), 'id="categoria"');
+	echo br();
 	echo br();
 	
 	echo form_label($field_array[3], $field_array[3]);
@@ -32,7 +35,10 @@
 		echo ('<option value="'.$unidade->id_apresentacao.'">'.$unidade->nome_apresentacao.'</option>');
 	endforeach;
 	echo ('</select>');
-	echo anchor('Apresentacao/add', 'Cadastro de Apresentacao', 'id="unidade"');
+	echo br();
+	echo br();
+	echo anchor('Apresentacao/add', form_button('Apresentacao', 'Cadastro de Apresentacao'), 'id="unidade"');
+	echo br();
 	echo br();
 	
 	echo form_label($field_array[4], $field_array[4]);
