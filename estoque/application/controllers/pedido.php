@@ -86,33 +86,17 @@ class Pedido extends CI_Controller {
 		foreach ($qry->result() as $pedido)
 		{
 			$table_row = NULL;
-			if($pedido->flag_baixa == 'A')
-			{
-				$table_row[] = anchor('Pedido/edit/' . $pedido->cod_pedido, '<span class="ui-icon ui-icon-pencil"></span>');
-				$table_row[] = anchor('Pedido/baixa/' . $pedido->cod_pedido, '<span class="ui-icon ui-icon-check"></span>');
-			} else 
-			{
-				$table_row[] = NULL;
-				$table_row[] = NULL;
-			}
+			$table_row[] = anchor('Pedido/edit/' . $pedido->cod_pedido, '<span class="ui-icon ui-icon-pencil"></span>');
+			$table_row[] = anchor('Pedido/baixa/' . $pedido->cod_pedido, '<span class="ui-icon ui-icon-check"></span>');
 			$table_row[] = $pedido->login;
 			$table_row[] = $pedido->nome_produto;
 			$table_row[] = $pedido->quantidade_pedida;
 			$table_row[] = mysql_to_pt($pedido->data_pedido);
 			if($pedido->flag_baixa == 'A')
-			{
 				$table_row[] = 'Aberta';
-			} elseif($pedido->flag_baixa == 'S')
-			{
+			elseif($pedido->flag_baixa == 'S')
 				$table_row[] = 'Atendida';
-			}
-			if($pedido->flag_baixa == 'A')
-			{
-				$table_row[] = anchor('Pedido/delete/' . $pedido->cod_pedido, '<span class="ui-icon ui-icon-trash"></span>');
-			} else 
-			{
-				$table_row[] = NULL;
-			}
+			$table_row[] = anchor('Pedido/delete/' . $pedido->cod_pedido, '<span class="ui-icon ui-icon-trash"></span>');
 			$this->table->add_row($table_row);
 		}    
 		$table = $this->table->generate();
