@@ -26,7 +26,8 @@ class NotaFiscal extends CI_Controller {
 	
 	function create()
     {
-        $this->load->model('MNotaFiscal','',TRUE);
+        $this->load->model('MNotaFiscal', '', TRUE);
+		$_POST['data_nota'] = pt_to_mysql($this->input->post('data_nota'));
         $this->MNotaFiscal->addNota($_POST);
         redirect('NotaFiscal/listing', 'refresh');
     }
@@ -34,15 +35,13 @@ class NotaFiscal extends CI_Controller {
 	function edit()
 	{
 		$id = $this->uri->segment(3);
-		$this->load->model('MProduto', '', TRUE);
+		$this->load->model('MNotaFiscal', '', TRUE);
 		$data['nota_fiscal'] = $this->MNotaFiscal->getNota($id)->result();
 		$data['title'] = "Modificar Produto - Controle de Estoque";
-		$data['headline'] = "Edição de Produtos";
-		$data['include'] = "produto_edit";
-		$this->load->model('MApresentacao', '', TRUE);
-		$data['unidades'] = $this->MApresentacao->listApresentacao();
-		$this->load->model('MCategoria', '', TRUE);
-		$data['categorias'] = $this->MCategoria->listCategoria();
+		$data['headline'] = "Edição de Notas Fiscais";
+		$data['include'] = "nota_fiscal_edit";
+		$this->load->model('MFornecedor', '', TRUE);
+		$data['fornecedores'] = $this->MFornecedor->listFornecedor();
 		$this->load->view('template', $data);
 	}
 	
@@ -66,20 +65,21 @@ class NotaFiscal extends CI_Controller {
 		$this->load->model('MNotaFiscal','',TRUE);
 		$qry = $this->MNotaFiscal->listNota();
 		$table = $this->table->generate($qry);
-		$tmpl = array ( 'table_open'  => '<table id="tabela" class="tablesorter">' );
+		$tmpl = array ( 'table_open'  => '<table id="tabela">' );
 		$this->table->set_template($tmpl);
 		$this->table->set_empty("&nbsp;"); 
-		$this->table->set_heading('Número', 'Fornecedor', 'Data da Nota');
+		$this->table->set_heading('Editar', 'Número', 'Fornecedor', 'Data da Nota', 'Excluir');
 		$table_row = array();
 		foreach ($qry->result() as $nota)
 		{
 			$table_row = NULL;
-			//$table_row[] = anchor('NotaFiscal/edit/' . $nota->cod_nota, img(base_url().'assets/img/atualizar.jpg'));
+			$table_row[] = anchor('NotaFiscal/edit/' . $nota->cod_nota, '<span class="ui-icon ui-icon-pencil"></span>');
 			$table_row[] = $nota->numero_nota;
 			$table_row[] = $nota->razao_social;
-			$table_row[] = $nota->data_nota;
-			//$table_row[] = anchor('NotaFiscal/delete/' . $nota->cod_nota, img(base_url().'assets/img/delete.jpg'), 
-			//				"onClick=\" return confirm('Tem certeza que deseja remover o registro?')\"");
+			$data_human = mysql_to_pt($nota->data_nota);
+			$table_row[] = $data_human;
+			$table_row[] = anchor('NotaFiscal/delete/' . $nota->cod_nota, '<span class="ui-icon ui-icon-trash"></span>', 
+							"onClick=\" return confirm('Tem certeza que deseja remover o registro?')\"");
 			$this->table->add_row($table_row);
 		}    
 		$table = $this->table->generate();

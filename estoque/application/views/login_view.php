@@ -1,17 +1,25 @@
-﻿<div id='login_form'>
-	<?php echo form_open('Login/process'); ?>
-	<!-- <form action='login/process' method='post' name='process'> -->
-		<h2>Login</h2>
-		<br />
-		<?php if(! is_null($msg)) echo $msg;?>		
-		<label for='username'>Usuário</label>
-		<input type='text' name='username' id='username' size='25' /><br />
+﻿<?php 
+	echo form_open('Login/process', 'class="form"');
+	$field_array = array('Login', 'Senha');
 	
-		<label for='password'>Senha</label>
-		<input type='password' name='password' id='password' size='25' /><br />                            
+	echo heading('Login', 2);
+	echo br();
+	if(! is_null($msg)) echo $msg;
+	echo br();
+	echo form_label($field_array[0], 'username');
+	echo br();
+	echo form_input('username', '', 'title="Seu login no sistema"');
+	echo br();
+	echo br();
+
+	echo form_label($field_array[1], 'password');
+	echo br();
+	echo form_password('password', '', 'title="Sua senha de acesso"');
+	echo br();
+	echo br();
+
+	echo form_submit('', 'Entrar'); 
+	echo form_close(); 
 	
-		<!-- <input type='Submit' value='Entrar' /> -->
-		<?php echo form_submit('', 'Entrar'); 
-		echo form_close(); ?>
-	<!-- </form> -->
-</div>
+/* End of file login_view.php */
+/* Location: ./system/application/views/login_view.php */

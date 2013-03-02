@@ -68,21 +68,21 @@ class Produto extends CI_Controller {
 		$this->load->model('MProduto','',TRUE);
 		$qry = $this->MProduto->listProduto();
 		$table = $this->table->generate($qry);
-		$tmpl = array ( 'table_open'  => '<table id="tabela" class="tablesorter">' );
+		$tmpl = array ( 'table_open'  => '<table id="tabela">' );
 		$this->table->set_template($tmpl);
 		$this->table->set_empty("&nbsp;"); 
-		$this->table->set_heading('', 'Codigo', 'Nome', 'Categoria', 'Unidade', 'Minimo', '');
+		$this->table->set_heading('Editar', 'Codigo', 'Nome', 'Categoria', 'Unidade', 'Minimo', 'Excluir');
 		$table_row = array();
 		foreach ($qry->result() as $produto)
 		{
 			$table_row = NULL;
-			$table_row[] = anchor('Produto/edit/' . $produto->id_produto, img(base_url().'assets/img/atualizar.jpg'));
+			$table_row[] = anchor('Produto/edit/' . $produto->id_produto, '<span class="ui-icon ui-icon-pencil"></span>');
 			$table_row[] = $produto->codigo;
 			$table_row[] = $produto->nome_produto;
 			$table_row[] = $produto->nome_categoria;
 			$table_row[] = $produto->nome_apresentacao;
 			$table_row[] = $produto->qtd_minima;
-			$table_row[] = anchor('Produto/delete/' . $produto->id_produto, img(base_url().'assets/img/delete.jpg'), 
+			$table_row[] = anchor('Produto/delete/' . $produto->id_produto, '<span class="ui-icon ui-icon-trash"></span>', 
 							"onClick=\" return confirm('Tem certeza que deseja remover o registro?')\"");
 			$this->table->add_row($table_row);
 		}    

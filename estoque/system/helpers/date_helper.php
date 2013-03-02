@@ -380,6 +380,48 @@ if ( ! function_exists('mysql_to_unix'))
 // ------------------------------------------------------------------------
 
 /**
+ * Converts a pt-BR Timestamp to MySQL
+ *
+ * @access	public
+ * @param	integer pt-BR timestamp
+ * @return	integer
+ */
+if ( ! function_exists('pt_to_mysql'))
+{
+	function pt_to_mysql($time = '')
+	{
+	
+		$time = substr($time, 6, 4)."-".substr($time, 4, 2)."-".substr($time, 0, 2);
+
+		// YYYY-MM-DD 
+		return  $time;
+	}
+}
+
+// ------------------------------------------------------------------------
+
+/**
+ * Converts a MySQL Timestamp to pt-BR
+ *
+ * @access	public
+ * @param	integer MySQL timestamp
+ * @return	integer
+ */
+if ( ! function_exists('mysql_to_pt'))
+{
+	function mysql_to_pt($time = '')
+	{
+	
+		$time = substr($time, 8, 2)."/".substr($time, 5, 2)."/".substr($time, 0, 4);
+
+		// DD/MM/YYYY
+		return  $time;
+	}
+}
+
+// ------------------------------------------------------------------------
+
+/**
  * Unix to "Human"
  *
  * Formats Unix timestamp to the following prototype: 2006-08-21 11:35 PM
@@ -394,17 +436,21 @@ if ( ! function_exists('unix_to_human'))
 {
 	function unix_to_human($time = '', $seconds = FALSE, $fmt = 'us')
 	{
-		$r  = date('Y', $time).'-'.date('m', $time).'-'.date('d', $time).' ';
+		$r  = date('d', $time).'/'.date('m', $time).'/'.date('Y', $time).' ';
 
 		if ($fmt == 'us')
 		{
 			$r .= date('h', $time).':'.date('i', $time);
 		}
+		else if ($fmt == 'pt')
+		{
+			$r = $r;
+		}
 		else
 		{
 			$r .= date('H', $time).':'.date('i', $time);
 		}
-
+		
 		if ($seconds)
 		{
 			$r .= ':'.date('s', $time);

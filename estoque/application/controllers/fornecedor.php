@@ -62,19 +62,19 @@ class Fornecedor extends CI_Controller {
 		$this->load->model('MFornecedor','',TRUE);
 		$qry = $this->MFornecedor->listFornecedor();
 		$table = $this->table->generate($qry);
-		$tmpl = array ( 'table_open'  => '<table id="tabela" class="tablesorter">' );
+		$tmpl = array ( 'table_open'  => '<table id="tabela">' );
 		$this->table->set_template($tmpl);
 		$this->table->set_empty("&nbsp;"); 
-		$this->table->set_heading('', 'CNPJ', 'Razão Social', 'Telefone', '');
+		$this->table->set_heading('Editar', 'CNPJ', 'Razão Social', 'Telefone', 'Excluir');
 		$table_row = array();
 		foreach ($qry->result() as $fornecedor)
 		{
 			$table_row = NULL;
-			$table_row[] = anchor('Fornecedor/edit/' . $fornecedor->id_fornecedor, img(base_url().'assets/img/atualizar.jpg'));
+			$table_row[] = anchor('Fornecedor/edit/' . $fornecedor->id_fornecedor, '<span class="ui-icon ui-icon-pencil"></span>');
 			$table_row[] = $fornecedor->cnpj;
 			$table_row[] = $fornecedor->razao_social;
 			$table_row[] = $fornecedor->telefone;
-			$table_row[] = anchor('Fornecedor/delete/' . $fornecedor->id_fornecedor, img(base_url().'assets/img/delete.jpg'), 
+			$table_row[] = anchor('Fornecedor/delete/' . $fornecedor->id_fornecedor, '<span class="ui-icon ui-icon-trash"></span>', 
 							"onClick=\" return confirm('Tem certeza que deseja remover o registro?')\"");
 			$this->table->add_row($table_row);
 		}    

@@ -10,6 +10,7 @@
 		function listNota()
 		{
 			$this->db->join('fornecedor', 'fornecedor.id_fornecedor = nota.id_fornecedor');
+			$this->db->order_by('nota.data_nota', 'desc');
 			return $this->db->get('nota');
 		}
 

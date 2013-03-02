@@ -20,7 +20,7 @@ class Login extends CI_Controller{
         $this->load->model('MLogin');
         $result = $this->MLogin->validate();
         if(! $result){
-			$msg = '<div id="erro">Usuário ou senha inválidos.</div><br />';
+			$msg = '<div id="erro" class="ui-state-error ui-corner-all"><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>Usuário ou senha inválidos.</div>';
             $this->index($msg);
         }else{
 			redirect('estoque/index');

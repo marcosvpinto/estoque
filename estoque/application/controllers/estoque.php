@@ -52,15 +52,15 @@ class Estoque extends CI_Controller {
 		$this->load->model('MEstoque','',TRUE);
 		$qry = $this->MEstoque->listEstoque();
 		$table = $this->table->generate($qry);
-		$tmpl = array ( 'table_open'  => '<table id="tabela" class="tablesorter">' );
+		$tmpl = array ( 'table_open'  => '<table id="tabela">' );
 		$this->table->set_template($tmpl);
 		$this->table->set_empty("&nbsp;"); 
-		$this->table->set_heading('', 'Produto', 'Quantidade');
+		$this->table->set_heading('Editar', 'Produto', 'Quantidade');
 		$table_row = array();
 		foreach ($qry->result() as $estoque)
 		{
 			$table_row = NULL;
-			$table_row[] = anchor('Estoque/edit/' . $estoque->id_estoque, img(base_url().'assets/img/atualizar.jpg'));
+			$table_row[] = anchor('Estoque/edit/' . $estoque->id_estoque, '<span class="ui-icon ui-icon-pencil"></span>');
 			$table_row[] = $estoque->nome_produto;
 			$table_row[] = $estoque->quantidade;
 			//$table_row[] = anchor('Estoque/delete/' . $estoque->id_estoque, img(base_url().'imagens/delete.jpg'), 

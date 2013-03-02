@@ -70,19 +70,19 @@ class Usuario extends CI_Controller {
 		$this->load->model('MUsuario','',TRUE);
 		$qry = $this->MUsuario->listUsuario();
 		$table = $this->table->generate($qry);
-		$tmpl = array ( 'table_open'  => '<table id="tabela" class="tablesorter">' );
+		$tmpl = array ( 'table_open'  => '<table id="tabela">' );
 		$this->table->set_template($tmpl);
 		$this->table->set_empty("&nbsp;"); 
-		$this->table->set_heading('', 'Login', 'Setor', 'Perfil', '');
+		$this->table->set_heading('Editar', 'Login', 'Setor', 'Perfil', 'Excluir');
 		$table_row = array();
 		foreach ($qry->result() as $usuario)
 		{
 			$table_row = NULL;
-			$table_row[] = anchor('Usuario/edit/' . $usuario->id_usuario, img(base_url().'assets/img/atualizar.jpg'));
+			$table_row[] = anchor('Usuario/edit/' . $usuario->id_usuario, '<span class="ui-icon ui-icon-pencil"></span>');
 			$table_row[] = $usuario->login;
 			$table_row[] = $usuario->nome_setor;
 			$table_row[] = $usuario->nome_perfil;
-			$table_row[] = anchor('Usuario/delete/' . $usuario->id_usuario, img(base_url().'assets/img/delete.jpg'), 
+			$table_row[] = anchor('Usuario/delete/' . $usuario->id_usuario, '<span class="ui-icon ui-icon-trash"></span>', 
 							"onClick=\" return confirm('Tem certeza que deseja remover o registro?')\"");
 			$this->table->add_row($table_row);
 		}    
