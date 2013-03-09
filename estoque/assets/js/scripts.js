@@ -26,3 +26,7 @@ $(function() {
 $(document).ready(function(){
     $(".form").validate();
 });
+
+$(document).ready(function(){
+    $("#aviso").modal();
+});

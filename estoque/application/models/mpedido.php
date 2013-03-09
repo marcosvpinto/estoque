@@ -5,12 +5,12 @@
 		function addPedido($data)
 		{
 			$this->db->insert('pedido', $data);
+			return $this->db->insert_id();
 		}
 
 		function listPedido()
 		{
 			$this->db->join('usuario', 'usuario.id_usuario = pedido.id_usuario');
-			$this->db->join('produto', 'produto.id_produto = pedido.cod_produto');
 			$this->db->limit(1000);
 			$this->db->order_by('data_pedido', 'desc');
 			return $this->db->get('pedido');
@@ -27,13 +27,6 @@
 			$this->db->update('pedido', $data); 
 		}
 		
-		function baixaPedido($id)
-		{
-			$update = array('flag_baixa'=>'S');
-			$this->db->where('cod_pedido', $id);
-			$this->db->update('pedido', $update);
-		}
-
 		function deletePedido($id)
 		{
 			$this->db->where('cod_pedido', $id);

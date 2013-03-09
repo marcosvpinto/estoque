@@ -30,8 +30,8 @@ class Pedido extends CI_Controller {
     {
         $this->load->model('MPedido', '', TRUE);
 		$_POST['data_pedido'] = pt_to_mysql($this->input->post('data_pedido'));
-        $this->MPedido->addPedido($_POST);
-        redirect('Pedido/listing', 'refresh');
+        $id = $this->MPedido->addPedido($_POST);
+        redirect('ItemPedido/addItens/'.$id, 'refresh');
     }
 	
 	function edit()
@@ -64,15 +64,63 @@ class Pedido extends CI_Controller {
 		$this->MPedido->deletePedido($id);
 		redirect('Pedido/listing', 'refresh');
 	}
-	
-	function baixa()
+
+	function verPedido()
 	{
 		$id = $this->uri->segment(3);
+		
 		$this->load->model('MPedido','',TRUE);
-		$this->MPedido->baixaPedido($id);
-		redirect('Pedido/listing', 'refresh');
+		$pedidos = $this->MPedido->getPedido($id);
+		
+		$pedido = $pedidos->result();
+		$cod_pedido = $pedido[0]->cod_pedido; 
+		
+		$this->load->model('MItemPedido', '', TRUE);
+		$itens = $this->MItemPedido->getItens($cod_pedido);
+		
+		$table1 = $this->table->generate($pedidos);
+		$tmpl = array ( 'table_open'  => '<table id="tabela1">' );
+		$this->table->set_template($tmpl);
+		$this->table->set_empty("&nbsp;"); 
+		$this->table->set_heading('Número', 'Usuario', 'Data do Pedido');
+		$table_row = array();
+		foreach ($pedidos->result() as $pedido)
+		{
+			$table_row = NULL;
+			$table_row[] = $pedido->cod_pedido; 
+			$this->load->model('MUsuario', '', TRUE);
+			$usuario = $this->MUsuario->getUsuario($pedido->id_usuario)->result();
+			$table_row[] = $usuario[0]->login;
+			$table_row[] = mysql_to_pt($pedido->data_pedido);
+			$this->table->add_row($table_row);
+		}    
+		$table1 = $this->table->generate();
+		$data['data_table1'] = $table1;
+		
+		$table2 = $this->table->generate($itens);
+		$tmpl = array ( 'table_open'  => '<table id="tabela2">' );
+		$this->table->set_template($tmpl);
+		$this->table->set_empty("&nbsp;"); 
+		$this->table->set_heading('Produto', 'Quantidade');
+		$table_row = array();
+		foreach ($itens->result() as $item)
+		{
+			$table_row = NULL;
+			$this->load->model('MProduto', '', TRUE);
+			$produto = $this->MProduto->getProduto($item->cod_produto)->result();
+			$table_row[] = $produto[0]->nome_produto;
+			$table_row[] = $item->quantidade;
+			$this->table->add_row($table_row);
+		}    
+		$table2 = $this->table->generate();
+		$data['data_table2'] = $table2;
+		
+		$data['title'] = "Listagem de Pedidos - Controle de Estoque";
+		$data['headline'] = "Listagem de Pedidos";
+		$data['include'] = 'pedido_view';
+		$this->load->view('template', $data);
 	}
-
+	
 	function listing()
 	{
 		$this->load->model('MPedido','',TRUE);
@@ -81,7 +129,7 @@ class Pedido extends CI_Controller {
 		$tmpl = array ( 'table_open'  => '<table id="tabela">' );
 		$this->table->set_template($tmpl);
 		$this->table->set_empty("&nbsp;"); 
-		$this->table->set_heading('Editar', 'Baixa', 'Usuário', 'Produto', 'Quantidade', 'Data Pedido', 'Status', 'Excluir');
+		$this->table->set_heading('Editar', 'Itens', 'Usuário', 'Data Pedido', 'Visualizar', 'Excluir');
 		$table_row = array();
 		foreach ($qry->result() as $pedido)
 		{
@@ -89,23 +137,15 @@ class Pedido extends CI_Controller {
 			if($pedido->flag_baixa == 'A')
 			{
 				$table_row[] = anchor('Pedido/edit/' . $pedido->cod_pedido, '<span class="ui-icon ui-icon-pencil"></span>');
-				$table_row[] = anchor('Pedido/baixa/' . $pedido->cod_pedido, '<span class="ui-icon ui-icon-check"></span>');
+				$table_row[] = anchor('ItemPedido/addItens/' . $pedido->cod_pedido, '<span class="ui-icon ui-icon-plus"></span>');
 			} else 
 			{
 				$table_row[] = NULL;
 				$table_row[] = NULL;
 			}
 			$table_row[] = $pedido->login;
-			$table_row[] = $pedido->nome_produto;
-			$table_row[] = $pedido->quantidade_pedida;
 			$table_row[] = mysql_to_pt($pedido->data_pedido);
-			if($pedido->flag_baixa == 'A')
-			{
-				$table_row[] = ('<span id="pedido_aberto">Aberta</span>');
-			} elseif($pedido->flag_baixa == 'S')
-			{
-				$table_row[] = ('<span id="pedido_atendido">Atendida</span>');
-			}
+			$table_row[] = anchor('Pedido/verPedido/' . $pedido->cod_pedido, '<span class="ui-icon ui-icon-circle-zoomin"></span>');
 			if($pedido->flag_baixa == 'A')
 			{
 				$table_row[] = anchor('Pedido/delete/' . $pedido->cod_pedido, '<span class="ui-icon ui-icon-trash"></span>');

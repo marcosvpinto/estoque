@@ -39,7 +39,7 @@ class NotaFiscal extends CI_Controller {
 		$data['nota_fiscal'] = $this->MNotaFiscal->getNota($id)->result();
 		$this->load->model('MFornecedor', '', TRUE);
 		$data['fornecedores'] = $this->MFornecedor->listFornecedor();
-		$data['title'] = "Modificar Produto - Controle de Estoque";
+		$data['title'] = "Modificar Nota Fiscal - Controle de Estoque";
 		$data['headline'] = "Edição de Notas Fiscais"; 
 		$data['include'] = "nota_fiscal_edit";
 		$this->load->view('template', $data);

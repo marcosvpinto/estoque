@@ -71,7 +71,8 @@
 	echo $data_table;
 	echo br();
 	
-	echo anchor('NotaFiscal/fechar/'.$nota_fiscal[0]->cod_nota, form_button('Finalizar', 'Finalizar Cadastro'));	
+	echo anchor('NotaFiscal/fechar/'.$nota_fiscal[0]->cod_nota, form_button('Finalizar', 'Finalizar Cadastro'));
+
 	
 /* End of file item_nota_add.php */
 /* Location: ./system/application/views/item_nota_add.php */

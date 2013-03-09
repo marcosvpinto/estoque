@@ -18,6 +18,10 @@
 			return $this->db->get_where('estoque', array('id_estoque'=> $id));
 		}
 
+		function getEstoqueByProduto($id) {
+			return $this->db->get_where('estoque', array('produto'=> $id));
+		}
+		
 		function updateEstoque($id, $data)
 		{
 			$this->db->where('id_estoque', $id);
