@@ -11,7 +11,7 @@
 		function listPedido()
 		{
 			$this->db->join('usuario', 'usuario.id_usuario = pedido.id_usuario');
-			$this->db->limit(1000);
+			$this->db->join('produto', 'produto.id_produto = pedido.id_usuario');
 			$this->db->order_by('data_pedido', 'desc');
 			return $this->db->get('pedido');
 		}

@@ -135,6 +135,44 @@ class ItemPedido extends CI_Controller {
 		}
 		return $table = $this->table->generate();
 	}
+	
+	function listing_itens()
+	{
+		$this->load->model('MPedido','',TRUE);
+		$qry = $this->MPedido->listPedido();
+		$this->load->model('MItemPedido','',TRUE);
+		$qry2 = $this->MItemPedido->listItens();
+		$table = $this->table->generate($qry);
+		$tmpl = array ( 'table_open'  => '<table id="tabela" class="table table-striped table-bordered table-hover">' );
+		$this->table->set_template($tmpl);
+		$this->table->set_empty("&nbsp;");
+		$this->table->set_heading('Solicitante', 'Produto', 'Quantidade', 'Data do Pedido');
+		$table_row = array();
+		foreach ($qry2->result() as $item)
+		{
+			$table_row = NULL;
+			$table_row[] = $item->login;
+			$table_row[] = $item->nome_produto;
+			$table_row[] = $item->quantidade;
+			$table_row[] =  mysql_to_pt($item->data_pedido);
+			$this->table->add_row($table_row);
+		}
+		foreach ($qry->result() as $pedido)
+		{
+			$table_row = NULL;
+			$table_row[] = $pedido->login;
+			$table_row[] = $pedido->nome_produto;
+			$table_row[] = $pedido->quantidade_pedida;
+			$table_row[] = mysql_to_pt($pedido->data_pedido);
+			$this->table->add_row($table_row);
+		} 
+		$table = $this->table->generate();
+		$data['title'] = "Listagem de Itens de Pedidos - Controle de Estoque";
+		$data['headline'] = "Listagem de Itens de Pedidos";
+		$data['include'] = 'item_pedido_listing';
+		$data['data_table'] = $table;
+		$this->load->view('template', $data);
+	}
 }
 
 /* End of file ItemPedido.php */

@@ -19,6 +19,15 @@
 		{
 			return $this->db->get_where('item_pedido', array('id_item_pedido'=>$id));
 		}
+		
+		function listItens()
+		{
+			$this->db->join('produto', 'produto.id_produto = item_pedido.cod_produto');
+			$this->db->join('pedido', 'pedido.cod_pedido = item_pedido.cod_pedido');
+			$this->db->join('usuario', 'usuario.id_usuario = pedido.id_usuario');
+			$this->db->order_by('pedido.data_pedido', 'desc');
+			return $this->db->get('item_pedido');
+		}
 
 		function updateItem($id, $data)
 		{

@@ -77,8 +77,10 @@
 								<li class="dropdown <?php if($this->uri->segment(1) == 'Pedido'){ echo 'active'; } else { echo ''; } ?>">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Pedido <b class="caret"></b></a>
 									<ul class="dropdown-menu">
-										<li><?php echo anchor('Pedido/listing', 'Listagem'); ?></li>
+										<li><?php echo anchor('Pedido/listing', 'Listagem de Pedidos'); ?></li>
 										<li><?php echo anchor('Pedido/add', 'Cadastrar Pedido'); ?></li>
+										<li class="divider"></li>
+										<li><?php echo anchor('ItemPedido/listing_itens', 'Listagem de Itens'); ?></li>
 									</ul>
 								</li>
 								<li <?php if($this->uri->segment(1) == 'Estoque' && $this->uri->segment(2) == 'listing'){ echo 'class="active"'; } else { echo ''; } ?> ><?php echo anchor('Estoque/listing', 'Estoque'); ?></li>
