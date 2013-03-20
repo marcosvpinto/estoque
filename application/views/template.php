@@ -28,7 +28,6 @@
 	</head>
 	
 	<body>
-		
 		<div id="wrap"> 
 			<div class="navbar navbar-fixed-top">
 				<div class="navbar-inner">

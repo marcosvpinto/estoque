@@ -3,7 +3,12 @@ $(document).ready(function(){
 		//"bJQueryUI": true,
 		"iDisplayLength": 100,
 		"bAutoWidth": true,
-		"sPaginationType": "bootstrap"
+		"sPaginationType": "bootstrap", 
+		/*"aoColumns": [
+			null,
+			null,
+			{ "sType": "date-eu" }
+		]*/
 	} );
 }); 
 
@@ -18,19 +23,11 @@ jQuery(function($){
 });
 
 $(function() {
-	$("input[type=submit], button").button();
-});
-
-$(function() {
 	$("#data_nota").datepicker();
 });
 
 $(document).ready(function(){
     $(".form-cadastro").validate();
-});
-
-$(document).ready(function(){
-    $("#aviso").modal();
 });
 
 
@@ -247,3 +244,46 @@ $.fn.dataTableExt.oPagination.scrolling = {
     }
 };
 
+
+jQuery.extend( jQuery.fn.dataTableExt.oSort, {
+    "date-eu-pre": function ( date ) {
+        var date = date.replace(" ", "");
+          
+        if (date.indexOf('.') > 0) {
+            /*date a, format dd.mn.(yyyy) ; (year is optional)*/
+            var eu_date = date.split('.');
+        } else {
+            /*date a, format dd/mn/(yyyy) ; (year is optional)*/
+            var eu_date = date.split('/');
+        }
+          
+        /*year (optional)*/
+        if (eu_date[2]) {
+            var year = eu_date[2];
+        } else {
+            var year = 0;
+        }
+          
+        /*month*/
+        var month = eu_date[1];
+        if (month.length == 1) {
+            month = 0+month;
+        }
+          
+        /*day*/
+        var day = eu_date[0];
+        if (day.length == 1) {
+            day = 0+day;
+        }
+          
+        return (year + month + day) * 1;
+    },
+ 
+    "date-eu-asc": function ( a, b ) {
+        return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+    },
+ 
+    "date-eu-desc": function ( a, b ) {
+        return ((a < b) ? 1 : ((a > b) ? -1 : 0));
+    }
+} );

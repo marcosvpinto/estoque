@@ -13,7 +13,7 @@ $(document).ready(function () {
 		grid: {backgroundColor: { colors: ["#fff", "#eee"] }, hoverable: true, clickable: true}});
 
 	function showTooltip(x, y, contents) {
-		$("<div id="tooltip">" + contents + "</div>").css( {
+		$("<div id='tooltip'>" + contents + "</div>").css( {
 			position: "absolute",
 			display: "none",
 			top: y + 5,

@@ -5,9 +5,12 @@
 	
 	echo $data_table; 
 	echo br();
-	echo '<div id="grafico" style="width:700px;height:300px;">';
-	echo '</div>';
-	//echo '<span id="clickdata"></span>';
+	echo br();
+	echo br();
+	echo br();
+	echo br();
+	echo '<div id="grafico" style="width:700px;height:300px;"></div>';
+	echo '<span id="clickdata"></span>';
 	echo br();
 
 /* End of file relatorio_retorno.php */
