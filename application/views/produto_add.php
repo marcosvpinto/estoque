@@ -25,7 +25,7 @@
 	endforeach;
 	echo ('</select>');
 		
-	echo form_input('qtd_minima', '', 'title="Quantidade mínima do produto em estoque" class="number input-block-level input-small" placeholder="Minimo" required');
+	echo form_input('qtd_minima', '', 'title="Quantidade mínima do produto em estoque" class="number input-block-level input-small" placeholder="Minimo" type="number" required');
 	echo br();
 	echo br();
 	echo form_submit('', 'Cadastrar', 'class="btn btn-primary"');

@@ -1,9 +1,8 @@
 $(document).ready(function(){ 
 		$("table").dataTable( {
-		//"bJQueryUI": true,
 		"iDisplayLength": 100,
 		"bAutoWidth": true,
-		"sPaginationType": "bootstrap", 
+		"sPaginationType": "bootstrap"
 		/*"aoColumns": [
 			null,
 			null,
@@ -13,7 +12,7 @@ $(document).ready(function(){
 }); 
 
 $(function(){
-	$("input, textarea, select").tipTip({defaultPosition: "right", activation: "focus"});
+	$("input, textarea, select").tooltip({'placement':'right', 'trigger':'focus'});
 });
 
 jQuery(function($){
@@ -25,11 +24,6 @@ jQuery(function($){
 $(function() {
 	$("#data_nota").datepicker();
 });
-
-$(document).ready(function(){
-    $(".form-cadastro").validate();
-});
-
 
 /*
 	Script para o data table integrar a paginacao com o estilo do bootstrap
@@ -244,7 +238,7 @@ $.fn.dataTableExt.oPagination.scrolling = {
     }
 };
 
-
+/* Script para corrigir a ordenação por data do Data Table */
 jQuery.extend( jQuery.fn.dataTableExt.oSort, {
     "date-eu-pre": function ( date ) {
         var date = date.replace(" ", "");

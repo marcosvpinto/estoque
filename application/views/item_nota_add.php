@@ -33,17 +33,17 @@
 	echo ('<div class="span6">');
 	echo heading('Item da Nota Fiscal', 3, 'class="form-cadastro-heading"');	
 
-	echo ('<select name="cod_produto" title="Produto" class="required input-block-level input-large">');
+	echo ('<select name="cod_produto" title="Produto" class="input-block-level input-large" required>');
 	echo ('<option value="">Produto</option>');
 	foreach($produtos->result() as $produto):
 		echo ('<option value="'.$produto->id_produto.'">'.$produto->nome_produto.'</option>');
 	endforeach;
 	echo ('</select>');
 
-	echo form_input('quantidade', '', 'title="Quantidade de Itens Comprados" class="required input-block-level input-large" placeholder="Quantidade"');
+	echo form_input('quantidade', '', 'title="Quantidade de Itens Comprados" class="input-block-level input-large" placeholder="Quantidade" required');
 	echo br();
 
-	echo form_input('valor_item', '', 'title="Valor Unitário do Item" id="valor_item" class="required input-block-level input-large" placeholder="Valor Unitário"');
+	echo form_input('valor_item', '', 'title="Valor Unitário do Item" id="valor_item" class="input-block-level input-large" placeholder="Valor Unitário" required');
 	echo br();
 	echo form_submit('', 'Cadastrar', 'class="btn btn-primary"');
 	echo form_close();

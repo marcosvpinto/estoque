@@ -9,7 +9,7 @@
 	echo form_input('cnpj', '', 'title="CNPJ da empresa" class="cnpj input-block-level input-xlarge" placeholder="CNPJ"');
 	echo br();
 	
-	echo form_input('razao_social', '', 'title="Nome da empresa" class="input-block-level input-xlarge" placeholder="Razão Social"');
+	echo form_input('razao_social', '', 'title="Nome da empresa" class="input-block-level input-xlarge" placeholder="Razão Social" required');
 	echo br();
 	
 	echo form_input('telefone', '', 'title="Telefone de Contato" class="telefone input-block-level input-xlarge" placeholder="Telefone"');

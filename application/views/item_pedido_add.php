@@ -33,14 +33,14 @@
 	echo ('<div class="span6">');
 	echo heading('Item do Pedido', 3, 'class="form-cadastro-heading"');	
 	
-	echo ('<select name="cod_produto" title="Produto" class="required input-block-level input-large">');
+	echo ('<select name="cod_produto" title="Produto" class="input-block-level input-large" required>');
 	echo ('<option value="">Produto</option>');
 	foreach($produtos->result() as $produto):
 		echo ('<option value="'.$produto->id_produto.'">'.$produto->nome_produto.'</option>');
 	endforeach;
 	echo ('</select>');
 
-	echo form_input('quantidade', '', 'title="Quantidade de Itens Solicitados" size="10" class="required input-block-level input-large" placeholder="Quantidade"');
+	echo form_input('quantidade', '', 'title="Quantidade de Itens Solicitados" size="10" class="input-block-level input-large" placeholder="Quantidade" required');
 	echo br();
 	
 	echo form_submit('', 'Cadastrar', 'class="btn btn-primary"');

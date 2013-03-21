@@ -6,7 +6,7 @@
 	echo heading($headline, 3, 'class="form-cadastro-heading"');
 	echo br();
 	
-	echo form_input('nome_categoria', '', 'title="Nome da categoria do produto" class="input-block-level input-xlarge" placeholder="Nome"');
+	echo form_input('nome_categoria', '', 'title="Nome da categoria do produto" class="input-block-level input-xlarge" placeholder="Nome" required');
 	echo br();
 	
 	echo form_submit('', 'Cadastrar', 'class="btn btn-primary"');
