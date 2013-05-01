@@ -26,7 +26,7 @@ class Apresentacao extends CI_Controller {
     {
         $this->load->model('MApresentacao','',TRUE);
         $this->MApresentacao->addApresentacao($_POST);
-        redirect('Produto/add', 'refresh');
+        redirect('produto/add', 'refresh');
     }
 	
 }

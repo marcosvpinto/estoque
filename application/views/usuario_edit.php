@@ -1,6 +1,6 @@
 ﻿<?php 
 
-	echo form_open('Usuario/update', 'class="form-cadastro"');
+	echo form_open('usuario/update', 'class="form-cadastro"');
 	$field_array = array('Login', 'Senha', 'Setor', 'Perfil');
 	
 	echo heading($headline, 3, 'class="form-cadastro-heading"');

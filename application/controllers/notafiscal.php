@@ -29,7 +29,7 @@ class NotaFiscal extends CI_Controller {
         $this->load->model('MNotaFiscal', '', TRUE);
 		$_POST['data_nota'] = pt_to_mysql($this->input->post('data_nota'));
         $id = $this->MNotaFiscal->addNota($_POST);
-        redirect('ItemNota/addItens/'.$id, 'refresh');
+        redirect('itemnota/addItens/'.$id, 'refresh');
     }
 	
 	function edit()
@@ -50,7 +50,7 @@ class NotaFiscal extends CI_Controller {
 		$this->load->model('MNotaFiscal','',TRUE);
 		$_POST['data_nota'] = pt_to_mysql($this->input->post('data_nota'));
 		$this->MNotaFiscal->updateNota($_POST['cod_nota'], $_POST);
-		redirect('NotaFiscal/listing', 'refresh');
+		redirect('notafiscal/listing', 'refresh');
 	}
 	
 	function fechar()
@@ -58,7 +58,7 @@ class NotaFiscal extends CI_Controller {
 		$id = $this->uri->segment(3);
 		$this->load->model('MNotaFiscal','',TRUE);
 		$this->MNotaFiscal->fecharNota($id);
-		redirect('NotaFiscal/listing', 'refresh');
+		redirect('notafiscal/listing', 'refresh');
 	}
 	
 	function verNota()
@@ -137,19 +137,20 @@ class NotaFiscal extends CI_Controller {
 				$table_row[] = '';
 			}
 			else {
-				$table_row[] = anchor('NotaFiscal/edit/' . $nota->cod_nota, '<span class="ui-icon ui-icon-pencil"></span>');
-				$table_row[] = anchor('ItemNota/addItens/' . $nota->cod_nota, '<span class="ui-icon ui-icon-plus"></span>');
+				$table_row[] = anchor('notafiscal/edit/' . $nota->cod_nota, '<span class="ui-icon ui-icon-pencil"></span>');
+				$table_row[] = anchor('itemnota/addItens/' . $nota->cod_nota, '<span class="ui-icon ui-icon-plus"></span>');
 			}
 			$table_row[] = $nota->numero_nota;
 			$table_row[] = $nota->razao_social;
-			$table_row[] = mysql_to_pt($nota->data_nota);
-			$table_row[] = anchor('NotaFiscal/verNota/' . $nota->cod_nota, '<span class="ui-icon ui-icon-circle-zoomin"></span>');
+			$table_row[] = $nota->data_nota;
+			//$table_row[] = mysql_to_pt($nota->data_nota);
+			$table_row[] = anchor('notafiscal/verNota/' . $nota->cod_nota, '<span class="ui-icon ui-icon-circle-zoomin"></span>');
 			$this->table->add_row($table_row);
 		}    
 		$table = $this->table->generate();
 		$data['title'] = "Listagem de Notas Fiscais - Controle de Estoque";
 		$data['headline'] = "Listagem de Notas Fiscais";
-		$data['include'] = 'NotaFiscal_listing';
+		$data['include'] = 'notafiscal_listing';
 		$data['data_table'] = $table;
 		$this->load->view('template', $data);
 	}

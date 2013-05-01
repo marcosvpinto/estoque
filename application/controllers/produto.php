@@ -30,7 +30,7 @@ class Produto extends CI_Controller {
     {
         $this->load->model('MProduto','',TRUE);
         $this->MProduto->addProduto($_POST);
-        redirect('Produto/listing', 'refresh');
+        redirect('produto/listing', 'refresh');
     }
 	
 	function edit()
@@ -52,7 +52,7 @@ class Produto extends CI_Controller {
 	{
 		$this->load->model('MProduto','',TRUE);
 		$this->MProduto->updateProduto($_POST['id_produto'], $_POST);
-		redirect('Produto/listing', 'refresh');
+		redirect('produto/listing', 'refresh');
 	}
 	
 	function delete()
@@ -60,7 +60,7 @@ class Produto extends CI_Controller {
 		$id = $this->uri->segment(3);
 		$this->load->model('MProduto','',TRUE);
 		$this->MProduto->deleteProduto($id);
-		redirect('Produto/listing', 'refresh');
+		redirect('produto/listing', 'refresh');
 	}
 
 	function listing()
@@ -76,20 +76,20 @@ class Produto extends CI_Controller {
 		foreach ($qry->result() as $produto)
 		{
 			$table_row = NULL;
-			$table_row[] = anchor('Produto/edit/' . $produto->id_produto, '<span class="ui-icon ui-icon-pencil"></span>');
+			$table_row[] = anchor('produto/edit/' . $produto->id_produto, '<span class="ui-icon ui-icon-pencil"></span>');
 			$table_row[] = $produto->codigo;
 			$table_row[] = $produto->nome_produto;
 			$table_row[] = $produto->nome_categoria;
 			$table_row[] = $produto->nome_apresentacao;
 			$table_row[] = $produto->qtd_minima;
-			$table_row[] = anchor('Produto/delete/' . $produto->id_produto, '<span class="ui-icon ui-icon-trash"></span>', 
+			$table_row[] = anchor('produto/delete/' . $produto->id_produto, '<span class="ui-icon ui-icon-trash"></span>', 
 							"onClick=\" return confirm('Tem certeza que deseja remover o registro?')\"");
 			$this->table->add_row($table_row);
 		}    
 		$table = $this->table->generate();
 		$data['title'] = "Listagem de Produtos - Controle de Estoque";
 		$data['headline'] = "Listagem de Produtos";
-		$data['include'] = 'Produto_listing';
+		$data['include'] = 'produto_listing';
 		$data['data_table'] = $table;
 		$this->load->view('template', $data);
 	}

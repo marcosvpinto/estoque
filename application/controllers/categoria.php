@@ -26,7 +26,7 @@ class Categoria extends CI_Controller {
     {
         $this->load->model('MCategoria','',TRUE);
         $this->MCategoria->addCategoria($_POST);
-        redirect('Produto/add', 'refresh');
+        redirect('produto/add', 'refresh');
     }
 	
 }

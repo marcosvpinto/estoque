@@ -1,7 +1,7 @@
 ﻿<?php 
 
 	
-	echo form_open('Apresentacao/create', 'class="form-cadastro"');
+	echo form_open('apresentacao/create', 'class="form-cadastro"');
 	$field_array = array('Nome');
 	
 	echo heading($headline, 3, 'class="form-cadastro-heading"');

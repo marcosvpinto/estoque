@@ -1,6 +1,6 @@
 ﻿<?php 
 
-	echo form_open('Usuario/create', 'class="form-cadastro"');
+	echo form_open('usuario/create', 'class="form-cadastro"');
 	
 	echo heading($headline, 3, 'class="form-cadastro-heading"');
 	echo br();

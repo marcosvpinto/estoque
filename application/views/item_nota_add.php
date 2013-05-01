@@ -1,6 +1,6 @@
 ﻿<?php 
 
-	echo form_open('ItemNota/createItens', 'class="form"');
+	echo form_open('itemnota/createItens', 'class="form"');
 	
 	echo ('<div class="row-fluid">');
 	echo ('<div class="span6">');
@@ -57,7 +57,7 @@
 	echo br();
 	echo br();
 	
-	echo anchor('NotaFiscal/fechar/'.$nota_fiscal[0]->cod_nota, form_button('Finalizar', 'Finalizar Cadastro', 'class="btn btn-primary"'));
+	echo anchor('notafiscal/fechar/'.$nota_fiscal[0]->cod_nota, form_button('Finalizar', 'Finalizar Cadastro', 'class="btn btn-primary"'));
 
 	
 /* End of file item_nota_add.php */

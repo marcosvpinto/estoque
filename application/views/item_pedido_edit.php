@@ -1,10 +1,10 @@
 ﻿<?php 
 
-	echo form_open('ItemPedido/updateItem', 'class="form-cadastro"');
+	echo form_open('itempedido/updateItem', 'class="form-cadastro"');
 	
 	echo form_hidden('cod_pedido', $pedido[0]->cod_pedido);
 	
-	$field_array = array('Produto', 'Quantidade');
+	$field_array = array('Produto', 'Quantidade', 'Obs');
 	
 	echo heading($headline, 3, 'class="form-cadastro-heading"');
 	echo br();
@@ -22,6 +22,9 @@
 	echo ('</select>');
 	
 	echo form_input('quantidade', $item[0]->quantidade, 'title="Quantidade de Itens Comprados" size="10" class="required input-block-level input-large"');
+	echo br();
+	
+	echo form_textarea('obs', '', 'title="Informação adicional relevante" class="input-block-level input-large" placeholder="Observações"');
 	echo br();
 	
 	echo form_submit('', 'Atualizar', 'class="btn btn-primary"');

@@ -15,6 +15,15 @@
 			$this->db->order_by('login', 'asc');
 			return $this->db->get('usuario');
 		}
+		
+		function listUsuarioInativo()
+		{
+			$this->db->join('setor', 'setor.id_setor = usuario.setor');
+			$this->db->join('perfil', 'perfil.nivel = usuario.perfil');
+			$this->db->where('ativo = "N"');
+			$this->db->order_by('login', 'asc');
+			return $this->db->get('usuario');
+		}
 
 		function getUsuario($id)
 		{
@@ -36,6 +45,13 @@
 		function inativarUsuario($id)
 		{
 			$data = array('ativo'=>'N');
+			$this->db->where('id_usuario', $id);
+			$this->db->update('usuario', $data); 
+		}
+		
+		function ativarUsuario($id)
+		{
+			$data = array('ativo'=>'S');
 			$this->db->where('id_usuario', $id);
 			$this->db->update('usuario', $data); 
 		}

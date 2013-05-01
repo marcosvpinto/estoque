@@ -1,6 +1,6 @@
 ﻿<?php 
 
-	echo form_open('ItemNota/updateItem', 'class="form-cadastro"');
+	echo form_open('itemnota/updateItem', 'class="form-cadastro"');
 	
 	echo form_hidden('cod_nota', $nota_fiscal[0]->cod_nota);
 	

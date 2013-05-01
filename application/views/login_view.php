@@ -5,7 +5,7 @@
 			<h3>Sistema de Controle de Estoque</h3>
 		</div>';
 
-	echo form_open('Login/process', 'class="form-signin"');
+	echo form_open('login/process', 'class="form-signin"');
 	$field_array = array('Login', 'Senha');
 	
 	echo heading('Login', 2, 'class="form-signin-heading"');

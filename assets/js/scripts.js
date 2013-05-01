@@ -1,19 +1,38 @@
 $(document).ready(function(){ 
 		$("table").dataTable( {
-		"iDisplayLength": 100,
-		"bAutoWidth": true,
-		"sPaginationType": "bootstrap"
-		/*"aoColumns": [
-			null,
-			null,
-			{ "sType": "date-eu" }
-		]*/
-	} );
-}); 
+			"iDisplayLength": 100,
+			"bAutoWidth": true,
+			"sDom": 'T<"clear">lfrtip', 
+			"oTableTools": {
+				"aButtons": [
+					{
+						"sExtends": "copy",
+						"sButtonText": "Copiar"								
+					},
+					{
+						"sExtends": "csv",
+						"sButtonText": "CSV"
+					},
+					{
+						"sExtends": "xls",
+						"sButtonText": "Excel"
+					}, 
+					{
+						"sExtends": "pdf", 
+						"sPdfSize": "A4", 
+						"sButtonText": "PDF"
+					}, 
+					{
+						"sExtends": "print", 
+						"sButtonText": "Imprimir"
+					}
+				], 
+				"sSwfPath": "../../assets/swf/copy_csv_xls_pdf.swf"
+			},
+			"sPaginationType": "bootstrap"
+		} );
 
-$(function(){
-	$("input, textarea, select").tooltip({'placement':'right', 'trigger':'focus'});
-});
+}); 
 
 jQuery(function($){
    $(".cnpj").mask("99.999.999-9999/99");
@@ -23,6 +42,12 @@ jQuery(function($){
 
 $(function() {
 	$("#data_nota").datepicker();
+	$("#data_inicial").datepicker();
+	$("#data_final").datepicker();
+});
+
+jQuery(function($){
+	$("input").tooltip({ placement: "right" });
 });
 
 /*
@@ -238,7 +263,7 @@ $.fn.dataTableExt.oPagination.scrolling = {
     }
 };
 
-/* Script para corrigir a ordenação por data do Data Table */
+/* Script para corrigir a ordenaï¿½ï¿½o por data do Data Table */
 jQuery.extend( jQuery.fn.dataTableExt.oSort, {
     "date-eu-pre": function ( date ) {
         var date = date.replace(" ", "");

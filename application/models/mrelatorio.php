@@ -4,8 +4,16 @@
 
 		function getConsumoProduto($nome)
 		{
-			$this->db->where('nome_produto', $nome['nome']);
+			$where = "nome_produto = '".$nome['nome']."'";
+			$this->db->where($where);
 			return $this->db->get('consumo_produto');
+		}
+		
+		function getCompraProduto()
+		{
+			//$where = "nome_produto = '".$nome['nome']."'";
+			//$this->db->where($where);
+			return $this->db->get('nota');
 		}
 
 	}

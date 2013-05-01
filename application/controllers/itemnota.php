@@ -20,7 +20,7 @@ class ItemNota extends CI_Controller {
 		$this->load->model('MNotaFiscal', '', TRUE);
 		$nota = $this->MNotaFiscal->getNota($id)->result();
 		if($nota[0]->fechado == '1'){
-			redirect('NotaFiscal/listing', 'refresh');
+			redirect('notafiscal/listing', 'refresh');
 		}
 		else {
 			$data['include'] = "item_nota_add";
@@ -42,7 +42,7 @@ class ItemNota extends CI_Controller {
 	{
 		$this->load->model('MItemNota', '', TRUE);
 		$this->MItemNota->addItem($_POST);
-		redirect('ItemNota/addItens/'.$_POST['cod_nota'], 'refresh');
+		redirect('itemnota/addItens/'.$_POST['cod_nota'], 'refresh');
 	}
 	
 	function editItem()
@@ -67,7 +67,7 @@ class ItemNota extends CI_Controller {
 	{
 		$this->load->model('MItemNota','',TRUE);
 		$this->MItemNota->updateItem($_POST['id_item'], $_POST);
-		redirect('ItemNota/addItens/' . $_POST['cod_nota'], 'refresh');
+		redirect('itemnota/addItens/' . $_POST['cod_nota'], 'refresh');
 	}
 	
 	function deleteItem()
@@ -76,7 +76,7 @@ class ItemNota extends CI_Controller {
 		$cod_nota = $this->uri->segment(4);
 		$this->load->model('MItemNota','',TRUE);
 		$this->MItemNota->deleteItem($id);
-		redirect('ItemNota/addItens/'.$cod_nota, 'refresh');
+		redirect('itemnota/addItens/'.$cod_nota, 'refresh');
 	}
 
 	function listing($id)
@@ -92,14 +92,14 @@ class ItemNota extends CI_Controller {
 		foreach ($qry->result() as $item)
 		{
 			$table_row = NULL;
-			$table_row[] = anchor('ItemNota/editItem/' . $item->id_item . '/' . $item->cod_nota, '<span class="ui-icon ui-icon-pencil"></span>');
+			$table_row[] = anchor('itemnota/editItem/' . $item->id_item . '/' . $item->cod_nota, '<span class="ui-icon ui-icon-pencil"></span>');
 			$this->load->model('MProduto', '', TRUE);
 			$produto = $this->MProduto->getProduto($item->cod_produto)->result();
 			$table_row[] = $produto[0]->nome_produto;
 			$table_row[] = $item->quantidade;
 			$table_row[] = 'R$ ' . number_format($item->valor_item, 2, ',', '.');
 			$table_row[] = 'R$ ' . number_format(($item->quantidade)*($item->valor_item), 2, ',', '.');
-			$table_row[] = anchor('ItemNota/deleteItem/' . $item->id_item . '/'.$item->cod_nota, '<span class="ui-icon ui-icon-trash"></span>', 
+			$table_row[] = anchor('itemnota/deleteItem/' . $item->id_item . '/'.$item->cod_nota, '<span class="ui-icon ui-icon-trash"></span>', 
 							"onClick=\" return confirm('Tem certeza que deseja remover o registro?')\"");
 			$this->table->add_row($table_row);
 		}    

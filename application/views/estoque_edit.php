@@ -1,6 +1,6 @@
 ﻿<?php 
 
-	echo form_open('Estoque/update', 'class="form-cadastro"');
+	echo form_open('estoque/update', 'class="form-cadastro"');
 	$field_array = array('Produto', 'Quantidade');
 	
 	echo heading($headline, 3, 'class="form-cadastro-heading"');

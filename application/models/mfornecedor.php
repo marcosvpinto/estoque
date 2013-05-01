@@ -12,6 +12,12 @@
 			$this->db->where('ativo = "S"');
 			return $this->db->get('fornecedor');
 		}
+		
+		function listFornecedorInativo()
+		{
+			$this->db->where('ativo = "N"');
+			return $this->db->get('fornecedor');
+		}
 
 		function getFornecedor($id)
 		{
@@ -33,6 +39,13 @@
 		function inativarFornecedor($id)
 		{
 			$data = array('ativo'=>'N');
+			$this->db->where('id_fornecedor', $id);
+			$this->db->update('fornecedor', $data); 
+		}
+		
+		function ativarFornecedor($id)
+		{
+			$data = array('ativo'=>'S');
 			$this->db->where('id_fornecedor', $id);
 			$this->db->update('fornecedor', $data); 
 		}

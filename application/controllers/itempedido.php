@@ -21,7 +21,7 @@ class ItemPedido extends CI_Controller {
 		$this->load->model('MPedido', '', TRUE);
 		$pedido = $this->MPedido->getPedido($id)->result();
 		if($pedido[0]->flag_baixa == 'S'){
-			redirect('Pedido/listing', 'refresh');
+			redirect('pedido/listing', 'refresh');
 		}
 		else {
 			$data['include'] = "item_pedido_add";
@@ -44,7 +44,7 @@ class ItemPedido extends CI_Controller {
 	{
 		$this->load->model('MItemPedido', '', TRUE);
 		$this->MItemPedido->addItem($_POST);
-		redirect('ItemPedido/addItens/'.$_POST['cod_pedido'], 'refresh');
+		redirect('itempedido/addItens/'.$_POST['cod_pedido'], 'refresh');
 	}
 
 	function editItem()
@@ -69,7 +69,7 @@ class ItemPedido extends CI_Controller {
 	{
 		$this->load->model('MItemPedido','',TRUE);
 		$this->MItemPedido->updateItem($_POST['id_item_pedido'], $_POST);
-		redirect('ItemPedido/addItens/' . $_POST['cod_pedido'], 'refresh');
+		redirect('itempedido/addItens/' . $_POST['cod_pedido'], 'refresh');
 	}
 
 	function deleteItem()
@@ -78,7 +78,7 @@ class ItemPedido extends CI_Controller {
 		$cod_pedido = $this->uri->segment(4);
 		$this->load->model('MItemPedido','',TRUE);
 		$this->MItemPedido->deleteItem($id);
-		redirect('ItemPedido/addItens/'.$cod_pedido, 'refresh');
+		redirect('itempedido/addItens/'.$cod_pedido, 'refresh');
 	}
 
 	function baixaItem()
@@ -95,9 +95,9 @@ class ItemPedido extends CI_Controller {
 		
 		if($estoque[0]->quantidade >= $pedido[0]->quantidade){
 			$this->MItemPedido->baixaItem($id_item);
-			redirect('ItemPedido/addItens/'.$cod_pedido.'/0', 'refresh');
+			redirect('itempedido/addItens/'.$cod_pedido.'/0', 'refresh');
 		} else {
-			redirect('ItemPedido/addItens/'.$cod_pedido.'/1', 'refresh');
+			redirect('itempedido/addItens/'.$cod_pedido.'/1', 'refresh');
 		}
 	}
 
@@ -109,7 +109,7 @@ class ItemPedido extends CI_Controller {
 		$tmpl = array ( 'table_open'  => '<table id="tabela" class="table table-striped table-bordered table-hover">' );
 		$this->table->set_template($tmpl);
 		$this->table->set_empty("&nbsp;");
-		$this->table->set_heading('Editar', 'Baixa', 'Produto', 'Quantidade', 'Excluir');
+		$this->table->set_heading('Editar', 'Baixa', 'Produto', 'Quantidade', 'Obs', 'Excluir');
 		$table_row = array();
 		foreach ($qry->result() as $item)
 		{
@@ -118,17 +118,18 @@ class ItemPedido extends CI_Controller {
 				$table_row[] = NULL;
 				$table_row[] = NULL;
 			} else {
-				$table_row[] = anchor('ItemPedido/editItem/' . $item->id_item_pedido . '/' . $item->cod_pedido, '<span class="ui-icon ui-icon-pencil"></span>');
-				$table_row[] = anchor('ItemPedido/baixaItem/' . $item->id_item_pedido . '/' . $item->cod_pedido, '<span class="ui-icon ui-icon-check"></span>');
+				$table_row[] = anchor('itempedido/editItem/' . $item->id_item_pedido . '/' . $item->cod_pedido, '<span class="ui-icon ui-icon-pencil"></span>');
+				$table_row[] = anchor('itempedido/baixaItem/' . $item->id_item_pedido . '/' . $item->cod_pedido, '<span class="ui-icon ui-icon-check"></span>');
 			}
 			$this->load->model('MProduto', '', TRUE);
 			$produto = $this->MProduto->getProduto($item->cod_produto)->result();
 			$table_row[] = $produto[0]->nome_produto;
 			$table_row[] = $item->quantidade;
+			$table_row[] = $item->obs;
 			if ($item->flag_baixa == 'S') {
 				$table_row[] = NULL;
 			} else {
-				$table_row[] = anchor('ItemPedido/deleteItem/' . $item->id_item_pedido . '/'.$item->cod_pedido, '<span class="ui-icon ui-icon-trash"></span>',
+				$table_row[] = anchor('itempedido/deleteItem/' . $item->id_item_pedido . '/'.$item->cod_pedido, '<span class="ui-icon ui-icon-trash"></span>',
 						"onClick=\" return confirm('Tem certeza que deseja remover o registro?')\"");
 			}
 			$this->table->add_row($table_row);
@@ -146,7 +147,7 @@ class ItemPedido extends CI_Controller {
 		$tmpl = array ( 'table_open'  => '<table id="tabela" class="table table-striped table-bordered table-hover">' );
 		$this->table->set_template($tmpl);
 		$this->table->set_empty("&nbsp;");
-		$this->table->set_heading('Solicitante', 'Produto', 'Quantidade', 'Data do Pedido');
+		$this->table->set_heading('Solicitante', 'Produto', 'Quantidade', 'Data do Pedido', 'Obs');
 		$table_row = array();
 		foreach ($qry2->result() as $item)
 		{
@@ -154,7 +155,9 @@ class ItemPedido extends CI_Controller {
 			$table_row[] = $item->login;
 			$table_row[] = $item->nome_produto;
 			$table_row[] = $item->quantidade;
-			$table_row[] =  mysql_to_pt($item->data_pedido);
+			$table_row[] = $item->data_pedido;
+			//$table_row[] =  mysql_to_pt($item->data_pedido);
+			$table_row[] = $item->obs;
 			$this->table->add_row($table_row);
 		}
 		foreach ($qry->result() as $pedido)
@@ -163,7 +166,9 @@ class ItemPedido extends CI_Controller {
 			$table_row[] = $pedido->login;
 			$table_row[] = $pedido->nome_produto;
 			$table_row[] = $pedido->quantidade_pedida;
-			$table_row[] = mysql_to_pt($pedido->data_pedido);
+			$table_row[] = $pedido->data_pedido;
+			//$table_row[] = mysql_to_pt($pedido->data_pedido);
+			$table_row[] = $pedido->obs;
 			$this->table->add_row($table_row);
 		} 
 		$table = $this->table->generate();

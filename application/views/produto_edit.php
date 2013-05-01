@@ -1,6 +1,6 @@
 ﻿<?php 
 
-	echo form_open('Produto/update', 'class="form-cadastro"');
+	echo form_open('produto/update', 'class="form-cadastro"');
 	$field_array = array('Codigo', 'Nome', 'Categoria', 'Unidade', 'Minimo');
 	
 	echo heading($headline, 3, 'class="form-cadastro-heading"');

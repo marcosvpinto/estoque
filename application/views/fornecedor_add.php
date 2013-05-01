@@ -1,6 +1,6 @@
 ﻿<?php 
 
-	echo form_open('Fornecedor/create', 'class="form-cadastro"');
+	echo form_open('fornecedor/create', 'class="form-cadastro"');
 	$field_array = array('CNPJ', 'Razão Social', 'Telefone');
 	
 	echo heading($headline, 3, 'class="form-cadastro-heading"');

@@ -1,6 +1,6 @@
 ﻿<?php 
 
-	echo form_open('NotaFiscal/create', 'class="form-cadastro"');
+	echo form_open('notafiscal/create', 'class="form-cadastro"');
 	$field_array = array('Número', 'Fornecedor', 'Data da Nota');
 	
 	echo heading($headline, 3, 'class="form-cadastro-heading"');

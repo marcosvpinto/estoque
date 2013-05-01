@@ -44,7 +44,7 @@ class Estoque extends CI_Controller {
 	{
 		$this->load->model('MEstoque','',TRUE);
 		$this->MEstoque->updateEstoque($_POST['id_estoque'], $_POST);
-		redirect('Estoque/listing', 'refresh');
+		redirect('estoque/listing', 'refresh');
 	}
 	
 	function listing()
@@ -60,7 +60,7 @@ class Estoque extends CI_Controller {
 		foreach ($qry->result() as $estoque)
 		{
 			$table_row = NULL;
-			$table_row[] = anchor('Estoque/edit/' . $estoque->id_estoque, '<span class="ui-icon ui-icon-pencil"></span>');
+			$table_row[] = anchor('estoque/edit/' . $estoque->id_estoque, '<span class="ui-icon ui-icon-pencil"></span>');
 			$table_row[] = $estoque->nome_produto;
 			if($estoque->quantidade <= $estoque->qtd_minima)
 			{

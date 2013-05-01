@@ -31,7 +31,7 @@ class Pedido extends CI_Controller {
         $this->load->model('MPedido', '', TRUE);
 		$_POST['data_pedido'] = pt_to_mysql($this->input->post('data_pedido'));
         $id = $this->MPedido->addPedido($_POST);
-        redirect('ItemPedido/addItens/'.$id, 'refresh');
+        redirect('itempedido/addItens/'.$id, 'refresh');
     }
 	
 	function edit()
@@ -54,7 +54,7 @@ class Pedido extends CI_Controller {
 		$this->load->model('MPedido','',TRUE);
 		$_POST['data_pedido'] = pt_to_mysql($this->input->post('data_pedido'));
 		$this->MPedido->updatePedido($_POST['cod_pedido'], $_POST);
-		redirect('Pedido/listing', 'refresh');
+		redirect('pedido/listing', 'refresh');
 	}
 	
 	function fechar()
@@ -74,10 +74,10 @@ class Pedido extends CI_Controller {
 		if($ok == true){
 			$this->load->model('MPedido','',TRUE);
 			$this->MPedido->fecharPedido($id);
-			redirect('Pedido/listing', 'refresh');
+			redirect('pedido/listing', 'refresh');
 		}
 		else {
-			redirect('ItemPedido/addItens/'.$id.'/2', 'refresh');
+			redirect('itempedido/addItens/'.$id.'/2', 'refresh');
 		}
 	}
 		
@@ -86,7 +86,7 @@ class Pedido extends CI_Controller {
 		$id = $this->uri->segment(3);
 		$this->load->model('MPedido','',TRUE);
 		$this->MPedido->deletePedido($id);
-		redirect('Pedido/listing', 'refresh');
+		redirect('pedido/listing', 'refresh');
 	}
 
 	function verPedido()
@@ -106,7 +106,7 @@ class Pedido extends CI_Controller {
 		$tmpl = array ( 'table_open'  => '<table id="tabela1" class="table table-striped table-bordered table-hover">' );
 		$this->table->set_template($tmpl);
 		$this->table->set_empty("&nbsp;"); 
-		$this->table->set_heading('Número', 'Usuario', 'Data do Pedido');
+		$this->table->set_heading('Número', 'Usuario', 'Data do Pedido', 'Obs');
 		$table_row = array();
 		foreach ($pedidos->result() as $pedido)
 		{
@@ -116,6 +116,7 @@ class Pedido extends CI_Controller {
 			$usuario = $this->MUsuario->getUsuario($pedido->id_usuario)->result();
 			$table_row[] = $usuario[0]->login;
 			$table_row[] = mysql_to_pt($pedido->data_pedido);
+			$table_row[] = $pedido->obs;
 			$this->table->add_row($table_row);
 		}    
 		$table1 = $this->table->generate();
@@ -125,7 +126,7 @@ class Pedido extends CI_Controller {
 		$tmpl = array ( 'table_open'  => '<table id="tabela2" class="table table-striped table-bordered table-hover">' );
 		$this->table->set_template($tmpl);
 		$this->table->set_empty("&nbsp;"); 
-		$this->table->set_heading('Produto', 'Quantidade');
+		$this->table->set_heading('Produto', 'Quantidade', 'Obs');
 		$table_row = array();
 		foreach ($itens->result() as $item)
 		{
@@ -134,6 +135,7 @@ class Pedido extends CI_Controller {
 			$produto = $this->MProduto->getProduto($item->cod_produto)->result();
 			$table_row[] = $produto[0]->nome_produto;
 			$table_row[] = $item->quantidade;
+			$table_row[] = $item->obs;
 			$this->table->add_row($table_row);
 		}    
 		$table2 = $this->table->generate();
@@ -153,26 +155,28 @@ class Pedido extends CI_Controller {
 		$tmpl = array ( 'table_open'  => '<table id="tabela" class="table table-striped table-bordered table-hover">' );
 		$this->table->set_template($tmpl);
 		$this->table->set_empty("&nbsp;"); 
-		$this->table->set_heading('Editar', 'Itens', 'Usuário', 'Data Pedido', 'Visualizar', 'Excluir');
+		$this->table->set_heading('Editar', 'Itens', 'Usuário', 'Data Pedido', 'Obs', 'Visualizar', 'Excluir');
 		$table_row = array();
 		foreach ($qry->result() as $pedido)
 		{
 			$table_row = NULL;
 			if($pedido->flag_baixa == 'A')
 			{
-				$table_row[] = anchor('Pedido/edit/' . $pedido->cod_pedido, '<span class="ui-icon ui-icon-pencil"></span>');
-				$table_row[] = anchor('ItemPedido/addItens/' . $pedido->cod_pedido, '<span class="ui-icon ui-icon-plus"></span>');
+				$table_row[] = anchor('pedido/edit/' . $pedido->cod_pedido, '<span class="ui-icon ui-icon-pencil"></span>');
+				$table_row[] = anchor('itempedido/addItens/' . $pedido->cod_pedido, '<span class="ui-icon ui-icon-plus"></span>');
 			} else 
 			{
 				$table_row[] = NULL;
 				$table_row[] = NULL;
 			}
 			$table_row[] = $pedido->login;
-			$table_row[] = mysql_to_pt($pedido->data_pedido);
-			$table_row[] = anchor('Pedido/verPedido/' . $pedido->cod_pedido, '<span class="ui-icon ui-icon-circle-zoomin"></span>');
+			$table_row[] = $pedido->data_pedido;
+			//$table_row[] = mysql_to_pt($pedido->data_pedido);
+			$table_row[] = $pedido->obs;
+			$table_row[] = anchor('pedido/verPedido/' . $pedido->cod_pedido, '<span class="ui-icon ui-icon-circle-zoomin"></span>');
 			if($pedido->flag_baixa == 'A')
 			{
-				$table_row[] = anchor('Pedido/delete/' . $pedido->cod_pedido, '<span class="ui-icon ui-icon-trash"></span>');
+				$table_row[] = anchor('pedido/delete/' . $pedido->cod_pedido, '<span class="ui-icon ui-icon-trash"></span>');
 			} else 
 			{
 				$table_row[] = NULL;

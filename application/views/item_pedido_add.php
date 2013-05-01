@@ -1,6 +1,6 @@
 ﻿<?php 
 
-	echo form_open('ItemPedido/createItens', 'class="form"');
+	echo form_open('itempedido/createItens', 'class="form"');
 	
 	echo ('<div class="row-fluid">');
 	echo ('<div class="span6">');
@@ -28,7 +28,7 @@
 	echo br();
 	echo ('</div>');
 	
-	$field_array = array('Produto', 'Quantidade');
+	$field_array = array('Produto', 'Quantidade', 'Obs');
 
 	echo ('<div class="span6">');
 	echo heading('Item do Pedido', 3, 'class="form-cadastro-heading"');	
@@ -41,6 +41,9 @@
 	echo ('</select>');
 
 	echo form_input('quantidade', '', 'title="Quantidade de Itens Solicitados" size="10" class="input-block-level input-large" placeholder="Quantidade" required');
+	echo br();
+	
+	echo form_textarea('obs', '', 'title="Informação adicional relevante" class="input-block-level input-large" placeholder="Observações"');
 	echo br();
 	
 	echo form_submit('', 'Cadastrar', 'class="btn btn-primary"');
@@ -63,7 +66,7 @@
 	echo br();
 	echo br();
 	
-	echo anchor('Pedido/fechar/'.$pedido[0]->cod_pedido, form_button('Finalizar', 'Finalizar Cadastro', 'class="btn btn-primary"'));
+	echo anchor('pedido/fechar/'.$pedido[0]->cod_pedido, form_button('Finalizar', 'Finalizar Cadastro', 'class="btn btn-primary"'));
 
 /* End of file item_pedido_add.php */
 /* Location: ./system/application/views/item_pedido_add.php */
