@@ -9,7 +9,7 @@ class MLogin extends CI_Model{
         $this->db->where('login', $username);
         $this->db->where('senha', $password);
 		
-		$this->db->join('perfil', 'perfil.nivel = usuario.perfil');
+		$this->db->join('perfil', 'perfil.id_perfil = usuario.perfil');
 		$this->db->join('setor', 'setor.id_setor = usuario.setor');
         
 		$query = $this->db->get('usuario');
