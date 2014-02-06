@@ -255,8 +255,8 @@ CREATE TABLE IF NOT EXISTS `perfil` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 
-insert into perfil(nome_perfil, nivel) values('admin', 5);
-insert into perfil(nome_perfil, nivel) values('user', 2);
+insert into perfil(id_perfil, nome_perfil, nivel) values(1, 'admin', 5);
+insert into perfil(id_perfil, nome_perfil, nivel) values(2, 'user', 2);
 
 -- --------------------------------------------------------
 
@@ -300,7 +300,7 @@ CREATE TABLE IF NOT EXISTS `setor` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 
-insert into setor(nome_setor) values('administrador');
+insert into setor(id_setor, nome_setor) values(1, 'administrador');
 
 -- --------------------------------------------------------
 
@@ -320,7 +320,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
 
 
-insert into usuario(login, senha, perfil, setor, ativo) values('admin', 'admin', 1, 1, 'S');
+insert into usuario(id_usuario, login, senha, perfil, setor, ativo) values(1, 'admin', 'admin', 1, 1, 'S');
 
 -- --------------------------------------------------------
 
