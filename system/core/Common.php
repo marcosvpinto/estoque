@@ -283,9 +283,7 @@ if ( ! function_exists('config_item'))
 			$_config_item[$item] = $config[$item];
 		}
 
-		//return $_config_item[$item];
-		$_config[0] =& $config;
-		return $_config[0];
+		return $_config_item[$item];
 	}
 }
 
